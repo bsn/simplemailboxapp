@@ -22,6 +22,7 @@
 		A1EED4DA171C782400B97387 /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = A1EED4D7171C782400B97387 /* UIScrollView+SVInfiniteScrolling.m */; };
 		A1EED4DB171C782400B97387 /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = A1EED4D9171C782400B97387 /* UIScrollView+SVPullToRefresh.m */; };
 		A1EED520171C78AC00B97387 /* MCSwipeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A1EED51F171C78AC00B97387 /* MCSwipeTableViewCell.m */; };
+		A1EED523171C799400B97387 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1EED521171C798300B97387 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		A1EED4D9171C782400B97387 /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
 		A1EED51E171C78AC00B97387 /* MCSwipeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCSwipeTableViewCell.h; sourceTree = "<group>"; };
 		A1EED51F171C78AC00B97387 /* MCSwipeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCSwipeTableViewCell.m; sourceTree = "<group>"; };
+		A1EED521171C798300B97387 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1EED523171C799400B97387 /* QuartzCore.framework in Frameworks */,
 				A1EED481171C6E5500B97387 /* UIKit.framework in Frameworks */,
 				A1EED483171C6E5500B97387 /* Foundation.framework in Frameworks */,
 				A1EED485171C6E5500B97387 /* CoreGraphics.framework in Frameworks */,
@@ -86,6 +89,7 @@
 		A1EED47F171C6E5500B97387 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A1EED521171C798300B97387 /* QuartzCore.framework */,
 				A1EED480171C6E5500B97387 /* UIKit.framework */,
 				A1EED482171C6E5500B97387 /* Foundation.framework */,
 				A1EED484171C6E5500B97387 /* CoreGraphics.framework */,
