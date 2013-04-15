@@ -18,6 +18,10 @@
 		A1EED4CD171C770100B97387 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A1EED4C5171C770100B97387 /* Default@2x.png */; };
 		A1EED4CE171C770100B97387 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A1EED4C7171C770100B97387 /* InfoPlist.strings */; };
 		A1EED4CF171C770100B97387 /* RBViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1EED4CA171C770100B97387 /* RBViewController.xib */; };
+		A1EED4D3171C77DC00B97387 /* TWStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = A1EED4D2171C77DC00B97387 /* TWStatus.m */; };
+		A1EED4DA171C782400B97387 /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = A1EED4D7171C782400B97387 /* UIScrollView+SVInfiniteScrolling.m */; };
+		A1EED4DB171C782400B97387 /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = A1EED4D9171C782400B97387 /* UIScrollView+SVPullToRefresh.m */; };
+		A1EED520171C78AC00B97387 /* MCSwipeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A1EED51F171C78AC00B97387 /* MCSwipeTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +41,15 @@
 		A1EED4C5171C770100B97387 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		A1EED4C8171C770100B97387 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A1EED4CA171C770100B97387 /* RBViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RBViewController.xib; sourceTree = "<group>"; };
+		A1EED4D1171C77DC00B97387 /* TWStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWStatus.h; sourceTree = "<group>"; };
+		A1EED4D2171C77DC00B97387 /* TWStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWStatus.m; sourceTree = "<group>"; };
+		A1EED4D5171C782400B97387 /* SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPullToRefresh.h; sourceTree = "<group>"; };
+		A1EED4D6171C782400B97387 /* UIScrollView+SVInfiniteScrolling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVInfiniteScrolling.h"; sourceTree = "<group>"; };
+		A1EED4D7171C782400B97387 /* UIScrollView+SVInfiniteScrolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVInfiniteScrolling.m"; sourceTree = "<group>"; };
+		A1EED4D8171C782400B97387 /* UIScrollView+SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVPullToRefresh.h"; sourceTree = "<group>"; };
+		A1EED4D9171C782400B97387 /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
+		A1EED51E171C78AC00B97387 /* MCSwipeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCSwipeTableViewCell.h; sourceTree = "<group>"; };
+		A1EED51F171C78AC00B97387 /* MCSwipeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCSwipeTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +139,9 @@
 		A1EED4B1171C768E00B97387 /* Contributed */ = {
 			isa = PBXGroup;
 			children = (
+				A1EED51D171C78AC00B97387 /* MCSwipeTableViewCell */,
+				A1EED4D4171C782400B97387 /* SVPullToRefresh */,
+				A1EED4D0171C77DC00B97387 /* TWStatus */,
 			);
 			path = Contributed;
 			sourceTree = "<group>";
@@ -211,6 +227,36 @@
 			path = XIBs;
 			sourceTree = "<group>";
 		};
+		A1EED4D0171C77DC00B97387 /* TWStatus */ = {
+			isa = PBXGroup;
+			children = (
+				A1EED4D1171C77DC00B97387 /* TWStatus.h */,
+				A1EED4D2171C77DC00B97387 /* TWStatus.m */,
+			);
+			path = TWStatus;
+			sourceTree = "<group>";
+		};
+		A1EED4D4171C782400B97387 /* SVPullToRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				A1EED4D5171C782400B97387 /* SVPullToRefresh.h */,
+				A1EED4D6171C782400B97387 /* UIScrollView+SVInfiniteScrolling.h */,
+				A1EED4D7171C782400B97387 /* UIScrollView+SVInfiniteScrolling.m */,
+				A1EED4D8171C782400B97387 /* UIScrollView+SVPullToRefresh.h */,
+				A1EED4D9171C782400B97387 /* UIScrollView+SVPullToRefresh.m */,
+			);
+			path = SVPullToRefresh;
+			sourceTree = "<group>";
+		};
+		A1EED51D171C78AC00B97387 /* MCSwipeTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				A1EED51E171C78AC00B97387 /* MCSwipeTableViewCell.h */,
+				A1EED51F171C78AC00B97387 /* MCSwipeTableViewCell.m */,
+			);
+			path = MCSwipeTableViewCell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -281,6 +327,10 @@
 				A1EED4BF171C768E00B97387 /* main.m in Sources */,
 				A1EED4C0171C768E00B97387 /* RBAppDelegate.m in Sources */,
 				A1EED4C1171C768E00B97387 /* RBViewController.m in Sources */,
+				A1EED4D3171C77DC00B97387 /* TWStatus.m in Sources */,
+				A1EED4DA171C782400B97387 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
+				A1EED4DB171C782400B97387 /* UIScrollView+SVPullToRefresh.m in Sources */,
+				A1EED520171C78AC00B97387 /* MCSwipeTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
