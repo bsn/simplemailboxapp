@@ -10,14 +10,14 @@
 		A1EED481171C6E5500B97387 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1EED480171C6E5500B97387 /* UIKit.framework */; };
 		A1EED483171C6E5500B97387 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1EED482171C6E5500B97387 /* Foundation.framework */; };
 		A1EED485171C6E5500B97387 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1EED484171C6E5500B97387 /* CoreGraphics.framework */; };
-		A1EED48B171C6E5500B97387 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A1EED489171C6E5500B97387 /* InfoPlist.strings */; };
-		A1EED48D171C6E5500B97387 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A1EED48C171C6E5500B97387 /* main.m */; };
-		A1EED491171C6E5500B97387 /* RBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A1EED490171C6E5500B97387 /* RBAppDelegate.m */; };
-		A1EED493171C6E5500B97387 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A1EED492171C6E5500B97387 /* Default.png */; };
-		A1EED495171C6E5500B97387 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A1EED494171C6E5500B97387 /* Default@2x.png */; };
-		A1EED497171C6E5500B97387 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A1EED496171C6E5500B97387 /* Default-568h@2x.png */; };
-		A1EED49A171C6E5500B97387 /* RBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1EED499171C6E5500B97387 /* RBViewController.m */; };
-		A1EED49D171C6E5500B97387 /* RBViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1EED49B171C6E5500B97387 /* RBViewController.xib */; };
+		A1EED4BF171C768E00B97387 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A1EED4B6171C768E00B97387 /* main.m */; };
+		A1EED4C0171C768E00B97387 /* RBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A1EED4B8171C768E00B97387 /* RBAppDelegate.m */; };
+		A1EED4C1171C768E00B97387 /* RBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1EED4BD171C768E00B97387 /* RBViewController.m */; };
+		A1EED4CB171C770100B97387 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A1EED4C3171C770100B97387 /* Default-568h@2x.png */; };
+		A1EED4CC171C770100B97387 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A1EED4C4171C770100B97387 /* Default.png */; };
+		A1EED4CD171C770100B97387 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A1EED4C5171C770100B97387 /* Default@2x.png */; };
+		A1EED4CE171C770100B97387 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A1EED4C7171C770100B97387 /* InfoPlist.strings */; };
+		A1EED4CF171C770100B97387 /* RBViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1EED4CA171C770100B97387 /* RBViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,17 +26,17 @@
 		A1EED482171C6E5500B97387 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A1EED484171C6E5500B97387 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		A1EED488171C6E5500B97387 /* SimpleMailbox-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SimpleMailbox-Info.plist"; sourceTree = "<group>"; };
-		A1EED48A171C6E5500B97387 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		A1EED48C171C6E5500B97387 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		A1EED48E171C6E5500B97387 /* SimpleMailbox-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SimpleMailbox-Prefix.pch"; sourceTree = "<group>"; };
-		A1EED48F171C6E5500B97387 /* RBAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RBAppDelegate.h; sourceTree = "<group>"; };
-		A1EED490171C6E5500B97387 /* RBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RBAppDelegate.m; sourceTree = "<group>"; };
-		A1EED492171C6E5500B97387 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		A1EED494171C6E5500B97387 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		A1EED496171C6E5500B97387 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		A1EED498171C6E5500B97387 /* RBViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RBViewController.h; sourceTree = "<group>"; };
-		A1EED499171C6E5500B97387 /* RBViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RBViewController.m; sourceTree = "<group>"; };
-		A1EED49C171C6E5500B97387 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RBViewController.xib; sourceTree = "<group>"; };
+		A1EED4B6171C768E00B97387 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A1EED4B7171C768E00B97387 /* RBAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBAppDelegate.h; sourceTree = "<group>"; };
+		A1EED4B8171C768E00B97387 /* RBAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBAppDelegate.m; sourceTree = "<group>"; };
+		A1EED4B9171C768E00B97387 /* SimpleMailbox-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SimpleMailbox-Prefix.pch"; sourceTree = "<group>"; };
+		A1EED4BC171C768E00B97387 /* RBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBViewController.h; sourceTree = "<group>"; };
+		A1EED4BD171C768E00B97387 /* RBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBViewController.m; sourceTree = "<group>"; };
+		A1EED4C3171C770100B97387 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		A1EED4C4171C770100B97387 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		A1EED4C5171C770100B97387 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		A1EED4C8171C770100B97387 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A1EED4CA171C770100B97387 /* RBViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RBViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,28 +83,132 @@
 		A1EED486171C6E5500B97387 /* SimpleMailbox */ = {
 			isa = PBXGroup;
 			children = (
-				A1EED48F171C6E5500B97387 /* RBAppDelegate.h */,
-				A1EED490171C6E5500B97387 /* RBAppDelegate.m */,
-				A1EED498171C6E5500B97387 /* RBViewController.h */,
-				A1EED499171C6E5500B97387 /* RBViewController.m */,
-				A1EED49B171C6E5500B97387 /* RBViewController.xib */,
-				A1EED487171C6E5500B97387 /* Supporting Files */,
+				A1EED4B0171C768E00B97387 /* Sources */,
+				A1EED4A3171C768800B97387 /* Resources */,
+				A1EED487171C6E5500B97387 /* Info */,
 			);
 			path = SimpleMailbox;
 			sourceTree = "<group>";
 		};
-		A1EED487171C6E5500B97387 /* Supporting Files */ = {
+		A1EED487171C6E5500B97387 /* Info */ = {
 			isa = PBXGroup;
 			children = (
 				A1EED488171C6E5500B97387 /* SimpleMailbox-Info.plist */,
-				A1EED489171C6E5500B97387 /* InfoPlist.strings */,
-				A1EED48C171C6E5500B97387 /* main.m */,
-				A1EED48E171C6E5500B97387 /* SimpleMailbox-Prefix.pch */,
-				A1EED492171C6E5500B97387 /* Default.png */,
-				A1EED494171C6E5500B97387 /* Default@2x.png */,
-				A1EED496171C6E5500B97387 /* Default-568h@2x.png */,
 			);
-			name = "Supporting Files";
+			name = Info;
+			sourceTree = "<group>";
+		};
+		A1EED4A3171C768800B97387 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A1EED4C2171C770100B97387 /* Images */,
+				A1EED4C6171C770100B97387 /* Strings */,
+				A1EED4C9171C770100B97387 /* XIBs */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A1EED4B0171C768E00B97387 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				A1EED4B1171C768E00B97387 /* Contributed */,
+				A1EED4B2171C768E00B97387 /* Controls */,
+				A1EED4B3171C768E00B97387 /* DataProviders */,
+				A1EED4B4171C768E00B97387 /* DOM */,
+				A1EED4B5171C768E00B97387 /* Main */,
+				A1EED4BA171C768E00B97387 /* Networking */,
+				A1EED4BB171C768E00B97387 /* ViewControllers */,
+				A1EED4BE171C768E00B97387 /* Views */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		A1EED4B1171C768E00B97387 /* Contributed */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Contributed;
+			sourceTree = "<group>";
+		};
+		A1EED4B2171C768E00B97387 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controls;
+			sourceTree = "<group>";
+		};
+		A1EED4B3171C768E00B97387 /* DataProviders */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DataProviders;
+			sourceTree = "<group>";
+		};
+		A1EED4B4171C768E00B97387 /* DOM */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DOM;
+			sourceTree = "<group>";
+		};
+		A1EED4B5171C768E00B97387 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				A1EED4B6171C768E00B97387 /* main.m */,
+				A1EED4B7171C768E00B97387 /* RBAppDelegate.h */,
+				A1EED4B8171C768E00B97387 /* RBAppDelegate.m */,
+				A1EED4B9171C768E00B97387 /* SimpleMailbox-Prefix.pch */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		A1EED4BA171C768E00B97387 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		A1EED4BB171C768E00B97387 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				A1EED4BC171C768E00B97387 /* RBViewController.h */,
+				A1EED4BD171C768E00B97387 /* RBViewController.m */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		A1EED4BE171C768E00B97387 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A1EED4C2171C770100B97387 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				A1EED4C3171C770100B97387 /* Default-568h@2x.png */,
+				A1EED4C4171C770100B97387 /* Default.png */,
+				A1EED4C5171C770100B97387 /* Default@2x.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		A1EED4C6171C770100B97387 /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				A1EED4C7171C770100B97387 /* InfoPlist.strings */,
+			);
+			path = Strings;
+			sourceTree = "<group>";
+		};
+		A1EED4C9171C770100B97387 /* XIBs */ = {
+			isa = PBXGroup;
+			children = (
+				A1EED4CA171C770100B97387 /* RBViewController.xib */,
+			);
+			path = XIBs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,11 +263,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1EED48B171C6E5500B97387 /* InfoPlist.strings in Resources */,
-				A1EED493171C6E5500B97387 /* Default.png in Resources */,
-				A1EED495171C6E5500B97387 /* Default@2x.png in Resources */,
-				A1EED497171C6E5500B97387 /* Default-568h@2x.png in Resources */,
-				A1EED49D171C6E5500B97387 /* RBViewController.xib in Resources */,
+				A1EED4CB171C770100B97387 /* Default-568h@2x.png in Resources */,
+				A1EED4CC171C770100B97387 /* Default.png in Resources */,
+				A1EED4CD171C770100B97387 /* Default@2x.png in Resources */,
+				A1EED4CE171C770100B97387 /* InfoPlist.strings in Resources */,
+				A1EED4CF171C770100B97387 /* RBViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,29 +278,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1EED48D171C6E5500B97387 /* main.m in Sources */,
-				A1EED491171C6E5500B97387 /* RBAppDelegate.m in Sources */,
-				A1EED49A171C6E5500B97387 /* RBViewController.m in Sources */,
+				A1EED4BF171C768E00B97387 /* main.m in Sources */,
+				A1EED4C0171C768E00B97387 /* RBAppDelegate.m in Sources */,
+				A1EED4C1171C768E00B97387 /* RBViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		A1EED489171C6E5500B97387 /* InfoPlist.strings */ = {
+		A1EED4C7171C770100B97387 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				A1EED48A171C6E5500B97387 /* en */,
+				A1EED4C8171C770100B97387 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		A1EED49B171C6E5500B97387 /* RBViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A1EED49C171C6E5500B97387 /* en */,
-			);
-			name = RBViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -262,8 +358,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SimpleMailbox/SimpleMailbox-Prefix.pch";
+				GCC_PREFIX_HEADER = "SimpleMailbox/Sources/Main/SimpleMailbox-Prefix.pch";
 				INFOPLIST_FILE = "SimpleMailbox/SimpleMailbox-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -273,8 +370,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SimpleMailbox/SimpleMailbox-Prefix.pch";
+				GCC_PREFIX_HEADER = "SimpleMailbox/Sources/Main/SimpleMailbox-Prefix.pch";
 				INFOPLIST_FILE = "SimpleMailbox/SimpleMailbox-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
