@@ -35,15 +35,13 @@
                 NSHTTPURLResponse *response = nil;
                 NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
 
-                // Connection Error Handling / Trying to reuse data from cache:
+                // Connection Error Handling
                 if (error != nil)
                     goto bail_out;
 
                 responseDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
                 if (error != nil)
                     goto bail_out;
-
-                NSLog(@"%@", responseDict);
 
                 if (error != nil || ![responseDict isKindOfClass:[NSDictionary class]])
                 {

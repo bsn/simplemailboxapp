@@ -18,7 +18,7 @@
     __strong NSString *_body;
     BOOL _starred;
     NSInteger _messages;
-    NSDate *_date;
+    __strong NSString *_date;
 }
 
 @property (nonatomic, readonly) NSInteger ID;
@@ -28,7 +28,7 @@
 @property (nonatomic, readonly) NSString *body;
 @property (nonatomic, readonly) BOOL starred;
 @property (nonatomic, readonly) NSInteger messages;
-@property (nonatomic, readonly) NSDate *date;
+@property (nonatomic, readonly) NSString *date;
 
 - (id)initWithDict:(NSDictionary *)dict;
 
