@@ -23,6 +23,9 @@
 		A1EED4DB171C782400B97387 /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = A1EED4D9171C782400B97387 /* UIScrollView+SVPullToRefresh.m */; };
 		A1EED520171C78AC00B97387 /* MCSwipeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A1EED51F171C78AC00B97387 /* MCSwipeTableViewCell.m */; };
 		A1EED523171C799400B97387 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1EED521171C798300B97387 /* QuartzCore.framework */; };
+		A1EED526171C7BD200B97387 /* RBNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = A1EED525171C7BD200B97387 /* RBNetworking.m */; };
+		A1EED529171C82E200B97387 /* RBEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = A1EED528171C82E200B97387 /* RBEmail.m */; };
+		A1EED52C171C857000B97387 /* RBDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = A1EED52B171C857000B97387 /* RBDataProvider.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +55,12 @@
 		A1EED51E171C78AC00B97387 /* MCSwipeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCSwipeTableViewCell.h; sourceTree = "<group>"; };
 		A1EED51F171C78AC00B97387 /* MCSwipeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCSwipeTableViewCell.m; sourceTree = "<group>"; };
 		A1EED521171C798300B97387 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A1EED524171C7BD200B97387 /* RBNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBNetworking.h; sourceTree = "<group>"; };
+		A1EED525171C7BD200B97387 /* RBNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBNetworking.m; sourceTree = "<group>"; };
+		A1EED527171C82E200B97387 /* RBEmail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBEmail.h; sourceTree = "<group>"; };
+		A1EED528171C82E200B97387 /* RBEmail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBEmail.m; sourceTree = "<group>"; };
+		A1EED52A171C857000B97387 /* RBDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBDataProvider.h; sourceTree = "<group>"; };
+		A1EED52B171C857000B97387 /* RBDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBDataProvider.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +169,8 @@
 		A1EED4B3171C768E00B97387 /* DataProviders */ = {
 			isa = PBXGroup;
 			children = (
+				A1EED52A171C857000B97387 /* RBDataProvider.h */,
+				A1EED52B171C857000B97387 /* RBDataProvider.m */,
 			);
 			path = DataProviders;
 			sourceTree = "<group>";
@@ -167,6 +178,8 @@
 		A1EED4B4171C768E00B97387 /* DOM */ = {
 			isa = PBXGroup;
 			children = (
+				A1EED527171C82E200B97387 /* RBEmail.h */,
+				A1EED528171C82E200B97387 /* RBEmail.m */,
 			);
 			path = DOM;
 			sourceTree = "<group>";
@@ -185,6 +198,8 @@
 		A1EED4BA171C768E00B97387 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				A1EED524171C7BD200B97387 /* RBNetworking.h */,
+				A1EED525171C7BD200B97387 /* RBNetworking.m */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -335,6 +350,9 @@
 				A1EED4DA171C782400B97387 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				A1EED4DB171C782400B97387 /* UIScrollView+SVPullToRefresh.m in Sources */,
 				A1EED520171C78AC00B97387 /* MCSwipeTableViewCell.m in Sources */,
+				A1EED526171C7BD200B97387 /* RBNetworking.m in Sources */,
+				A1EED529171C82E200B97387 /* RBEmail.m in Sources */,
+				A1EED52C171C857000B97387 /* RBDataProvider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
