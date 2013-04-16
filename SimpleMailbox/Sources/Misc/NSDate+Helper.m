@@ -49,6 +49,7 @@ static NSDateFormatter* sExportDateFormatter2 = nil;
         if (sExportDateFormatter1 == nil)
         {
             sExportDateFormatter1 = [[NSDateFormatter alloc] init];
+            [sExportDateFormatter1 setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
             [sExportDateFormatter1 setDateFormat:@"MMM d"];
         }
         df = sExportDateFormatter1;

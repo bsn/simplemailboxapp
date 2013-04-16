@@ -128,6 +128,7 @@ static RBDataProvider *sSharedProvider = nil;
     for (RBEmail *email in _emails)
         [email removeObserver:self forKeyPath:@"state"];
     [_emails removeAllObjects];
+    [_filteredEmails removeAllObjects];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:RB_EMAILS_KEY];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:RB_PAGINATION_KEY];
     [[NSUserDefaults standardUserDefaults] synchronize];

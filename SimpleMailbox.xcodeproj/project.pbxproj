@@ -269,7 +269,6 @@
 				A1EED583171D601000B97387 /* Misc */,
 				A1EED4BA171C768E00B97387 /* Networking */,
 				A1EED4BB171C768E00B97387 /* ViewControllers */,
-				A1EED4BE171C768E00B97387 /* Views */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -341,13 +340,6 @@
 				A1EED4BD171C768E00B97387 /* RBViewController.m */,
 			);
 			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		A1EED4BE171C768E00B97387 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		A1EED4C2171C770100B97387 /* Images */ = {
