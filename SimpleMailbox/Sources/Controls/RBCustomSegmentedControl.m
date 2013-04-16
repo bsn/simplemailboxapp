@@ -141,9 +141,7 @@
 
 - (void)setSelectedItem:(NSInteger)selectedItem
 {
-    _selectedItem = selectedItem;
-    
-    [self dimAllButtonsExcept:(UIButton *)[self viewWithTag:selectedItem]];
+    [self touchDownAction:(UIButton *)[self viewWithTag:selectedItem]];
 }
 
 #pragma mark -

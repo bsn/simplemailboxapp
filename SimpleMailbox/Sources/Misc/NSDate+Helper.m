@@ -17,13 +17,13 @@ static NSDateFormatter* sExportDateFormatter2 = nil;
 {
     if (string == nil)
         return nil;
-    
+
     if (sImportDateFormatter == nil)
     {
         sImportDateFormatter = [[NSDateFormatter alloc] init];
         [sImportDateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
     }
-    
+
     return [sImportDateFormatter dateFromString:string];
 }
 
@@ -31,9 +31,9 @@ static NSDateFormatter* sExportDateFormatter2 = nil;
 {
     if (date == nil)
         return nil;
-    
+
     NSDateFormatter* df = nil;
-    
+
     if ([date isToday])
     {
         if (sExportDateFormatter2 == nil)
@@ -53,7 +53,7 @@ static NSDateFormatter* sExportDateFormatter2 = nil;
         }
         df = sExportDateFormatter1;
     }
-    
+
     return [df stringFromDate:date];
 }
 

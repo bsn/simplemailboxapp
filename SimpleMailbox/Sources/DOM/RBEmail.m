@@ -72,7 +72,7 @@
 - (id)initWithCoder:(NSCoder *)decoder
 {
     self = [super init];
-    
+
     if (self != nil)
     {
         _ID = [[decoder decodeObjectForKey:RB_ID_KEY] integerValue];
@@ -85,7 +85,7 @@
         _messages = [[decoder decodeObjectForKey:RB_MESSAGES_KEY] integerValue];
         _date = [decoder decodeObjectForKey:RB_DATE_KEY];
     }
-    
+
     return self;
 }
 

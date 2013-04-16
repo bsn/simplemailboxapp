@@ -10,6 +10,9 @@
 #import "RBNetworking.h"
 #import "RBPagination.h"
 
+#define RB_EMAILS_KEY @"emails"
+#define RB_PAGINATION_KEY @"pagination"
+
 static RBDataProvider *sSharedProvider = nil;
 
 @interface RBDataProvider (Private)
@@ -26,9 +29,9 @@ static RBDataProvider *sSharedProvider = nil;
     {
         _emails = [[NSMutableArray alloc] initWithCapacity:0];
         _networking = [[RBNetworking alloc] init];
-        
+
         [self restore];
-        
+
         if ([_emails count] == 0)
             [self getEmails];
     }
@@ -69,38 +72,51 @@ static RBDataProvider *sSharedProvider = nil;
         return YES;
     }
     else
+    {
+        if ([self.delegate conformsToProtocol:@protocol(RBDataProviderDelegate)])
+            [self.delegate emailsDidFetched:NO];
+
         return NO;
+    }
 }
 
 - (void)save
 {
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:0];
-    
+
     for (RBEmail *email in _emails)
     {
         NSData *encodedObject = [NSKeyedArchiver archivedDataWithRootObject:email];
         [array addObject:encodedObject];
     }
-    
-    [[NSUserDefaults standardUserDefaults] setObject:array forKey:@"emails"];
+
+    [[NSUserDefaults standardUserDefaults] setObject:array forKey:RB_EMAILS_KEY];
+    if (_pagination != nil)
+        [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:_pagination] forKey:RB_PAGINATION_KEY];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)restore
 {
     [_emails removeAllObjects];
-    
-    for (NSData *data in [[NSUserDefaults standardUserDefaults] objectForKey:@"emails"])
+
+    for (NSData *data in [[NSUserDefaults standardUserDefaults] objectForKey:RB_EMAILS_KEY])
     {
         RBEmail *email = (RBEmail *)[NSKeyedUnarchiver unarchiveObjectWithData:data];
         [_emails addObject:email];
     }
+
+    NSData* data = [[NSUserDefaults standardUserDefaults] objectForKey:RB_PAGINATION_KEY];
+    if (data != nil)
+        _pagination = (RBPagination *)[NSKeyedUnarchiver unarchiveObjectWithData:data];
 }
 
 - (void)reset
 {
+    _pagination = nil;
     [_emails removeAllObjects];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"emails"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:RB_EMAILS_KEY];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:RB_PAGINATION_KEY];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -122,15 +138,14 @@ static RBDataProvider *sSharedProvider = nil;
             RBEmail *email = [[RBEmail alloc] initWithDict:dict];
             [_emails addObject:email];
         }
-        
-        [self save];
 
         _pagination = [[RBPagination alloc] initWithDict:[result objectForKey:@"pagination"]];
-
         // Note: Hack to deal with pagination issue, when current_page < total, but emails array is empty => no need to load more next time
         BOOL hasMore = [[result objectForKey:@"emails"] count] > 0;
         if (!hasMore)
             _pagination.currentPage = _pagination.totalPages;
+
+        [self save];
 
         if ([self.delegate conformsToProtocol:@protocol(RBDataProviderDelegate)])
             [self.delegate emailsDidFetched:hasMore];

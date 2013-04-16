@@ -40,14 +40,14 @@ static NSRegularExpression *sAddressRegExp = nil;
         [self setSelectionStyle:UITableViewCellSelectionStyleNone];
         [self.contentView setBackgroundColor:[UIColor whiteColor]];
         [self setMode:MCSwipeTableViewCellModeExit];
-        
+
         _topLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _topLabel.backgroundColor = [UIColor clearColor];
         _topLabel.numberOfLines = 1;
         _topLabel.font = [UIFont fontWithName:@"ChevinCyrillic-Light" size:15.];
         _topLabel.textColor = RB_TOP_LABEL_COLOR;
         [self.contentView addSubview:_topLabel];
-        
+
         _subjLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _subjLabel.backgroundColor = [UIColor clearColor];
         _subjLabel.numberOfLines = 1;
@@ -79,15 +79,15 @@ static NSRegularExpression *sAddressRegExp = nil;
         _counterLabel.textAlignment = UITextAlignmentCenter;
         _counterLabel.opaque = YES;
         _counterLabel.layer.cornerRadius = 4.;
-        [self.contentView addSubview:_counterLabel];        
-        
+        [self.contentView addSubview:_counterLabel];
+
         _favImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"fav-icon"]];
         _favImageView.hidden = YES;
         [self.contentView addSubview:_favImageView];
-        
+
         _rightIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow"]];
         [self.contentView addSubview:_rightIconView];
-        
+
         _separatorLineView = [[UIView alloc] initWithFrame:CGRectZero];
         _separatorLineView.backgroundColor = RB_SEPARATOR_COLOR;
         [self.contentView addSubview:_separatorLineView];
@@ -123,10 +123,10 @@ static NSRegularExpression *sAddressRegExp = nil;
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    
+
     CGFloat marginTop = 3.;
     CGFloat textOffsetLeft = 32.;
-    
+
     _favImageView.frame = CGRectMake(7., rintf((CGRectGetHeight(self.contentView.bounds) - _favImageView.image.size.height) / 2.), _favImageView.image.size.width, _favImageView.image.size.height);
     CGSize counterSize = [_counterLabel.text sizeWithFont:_counterLabel.font];
     counterSize.width += 7.; // extra padding
@@ -137,7 +137,7 @@ static NSRegularExpression *sAddressRegExp = nil;
     CGFloat textWidth = !_counterLabel.hidden ? 235. : (CGRectGetMaxX(_counterLabel.frame) - textOffsetLeft);
     _subjLabel.frame = CGRectMake(textOffsetLeft, CGRectGetMaxY(_topLabel.frame) - 2., textWidth, [@"A" sizeWithFont:_subjLabel.font].height);
     _bodyLabel.frame = CGRectMake(textOffsetLeft, CGRectGetMaxY(_subjLabel.frame) - 2., textWidth, [@"A" sizeWithFont:_bodyLabel.font].height * 2.);
-    _dateLabel.frame = CGRectMake(CGRectGetWidth(self.contentView.bounds) - 80, marginTop, 63., [@"A" sizeWithFont:_dateLabel.font].height);    
+    _dateLabel.frame = CGRectMake(CGRectGetWidth(self.contentView.bounds) - 80, marginTop, 63., [@"A" sizeWithFont:_dateLabel.font].height);
     _separatorLineView.frame = CGRectMake(0., CGRectGetHeight(self.contentView.bounds) - 1., CGRectGetWidth(self.contentView.bounds), 1.);
 }
 
@@ -149,13 +149,13 @@ static NSRegularExpression *sAddressRegExp = nil;
 {
     if (sAddressRegExp == nil)
         sAddressRegExp = [[NSRegularExpression alloc] initWithPattern:@" <.*>" options:NSRegularExpressionCaseInsensitive error:nil];
-    
+
     NSMutableString *mutableFrom = [NSMutableString stringWithString:from];
     [sAddressRegExp replaceMatchesInString:mutableFrom options:NSMatchingReportProgress range:NSMakeRange(0, [from length]) withTemplate:@""];
-    
+
     NSMutableString *mutableTo = [NSMutableString stringWithString:to];
     [sAddressRegExp replaceMatchesInString:mutableTo options:NSMatchingReportProgress range:NSMakeRange(0, [to length]) withTemplate:@""];
-    
+
     return [NSString stringWithFormat:@"%@ to %@", mutableFrom, mutableTo];
 }
 
