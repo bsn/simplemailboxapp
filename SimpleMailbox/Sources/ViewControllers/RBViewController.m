@@ -23,6 +23,13 @@
 {
     [super viewDidLoad];
 
+    if (_segmentedControl == nil)
+    {
+        _segmentedControl = [[RBCustomSegmentedControl alloc] initWithSegmentCount:3 segmentsize:CGSizeMake(54., 32.) dividerImage:nil tag:0 delegate:self];
+        [self.topBarView addSubview:_segmentedControl];
+        _segmentedControl.center = CGPointMake(CGRectGetMidX(self.topBarView.bounds), CGRectGetMidY(self.topBarView.bounds));
+    }
+
     _selectedState = kRBEmailStateInbox;
 
     [RBDataProvider sharedProvider].delegate = self;
@@ -53,7 +60,7 @@
 {
     [[RBDataProvider sharedProvider] reset];
     [self.tableView reloadData];
-    [[RBDataProvider sharedProvider] getEmails];    
+    [[RBDataProvider sharedProvider] getEmails];
 }
 
 #pragma mark -
@@ -97,10 +104,7 @@
         cell = [[RBCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
 
     cell.delegate = self;
-
-    RBEmail *email = [[[RBDataProvider sharedProvider] emailsForState:_selectedState] objectAtIndex:indexPath.row];
-    cell.textLabel.text = email.from;
-    cell.detailTextLabel.text = email.subject;
+    [cell setEmail:[[[RBDataProvider sharedProvider] emailsForState:_selectedState] objectAtIndex:indexPath.row]];
 
     return cell;
 }
@@ -108,11 +112,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 80.0;
 }
 
 #pragma mark -
@@ -123,8 +122,19 @@
 {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     RBEmail *email = [[[RBDataProvider sharedProvider] emailsForState:_selectedState] objectAtIndex:indexPath.row];
-    email.state = (RBEmailState)state;
+    RBEmailState emailState = [RBEmail stateForTriggerState:state];
+    email.state = (emailState == _selectedState) ? kRBEmailStateInbox : emailState;
     [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+}
+
+#pragma mark -
+#pragma mark *** RBCustomSegmentedControl Delegate Interface ***
+#pragma mark -
+
+- (void)touchUpInsideSegmentIndex:(NSUInteger)segmentIndex
+{
+    _selectedState = [RBEmail stateForSegmentIndex:segmentIndex];
+    [self.tableView reloadData];
 }
 
 @end

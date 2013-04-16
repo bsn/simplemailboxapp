@@ -54,6 +54,9 @@
 		A1EED56E171D269E00B97387 /* segment-2-active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A1EED560171D269E00B97387 /* segment-2-active@2x.png */; };
 		A1EED56F171D269E00B97387 /* segment-2.png in Resources */ = {isa = PBXBuildFile; fileRef = A1EED561171D269E00B97387 /* segment-2.png */; };
 		A1EED570171D269E00B97387 /* segment-2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A1EED562171D269E00B97387 /* segment-2@2x.png */; };
+		A1EED573171D2EF700B97387 /* RBCustomSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = A1EED572171D282000B97387 /* RBCustomSegmentedControl.m */; };
+		A1EED576171D35D600B97387 /* mailbox.png in Resources */ = {isa = PBXBuildFile; fileRef = A1EED574171D35D600B97387 /* mailbox.png */; };
+		A1EED577171D35D600B97387 /* mailbox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A1EED575171D35D600B97387 /* mailbox@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -119,6 +122,10 @@
 		A1EED560171D269E00B97387 /* segment-2-active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "segment-2-active@2x.png"; sourceTree = "<group>"; };
 		A1EED561171D269E00B97387 /* segment-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "segment-2.png"; sourceTree = "<group>"; };
 		A1EED562171D269E00B97387 /* segment-2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "segment-2@2x.png"; sourceTree = "<group>"; };
+		A1EED571171D282000B97387 /* RBCustomSegmentedControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RBCustomSegmentedControl.h; sourceTree = "<group>"; };
+		A1EED572171D282000B97387 /* RBCustomSegmentedControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RBCustomSegmentedControl.m; sourceTree = "<group>"; };
+		A1EED574171D35D600B97387 /* mailbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mailbox.png; sourceTree = "<group>"; };
+		A1EED575171D35D600B97387 /* mailbox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mailbox@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +228,8 @@
 		A1EED4B2171C768E00B97387 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				A1EED571171D282000B97387 /* RBCustomSegmentedControl.h */,
+				A1EED572171D282000B97387 /* RBCustomSegmentedControl.m */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -289,6 +298,8 @@
 				A1EED535171D11C300B97387 /* check@2x.png */,
 				A1EED538171D11C300B97387 /* cross.png */,
 				A1EED539171D11C300B97387 /* cross@2x.png */,
+				A1EED574171D35D600B97387 /* mailbox.png */,
+				A1EED575171D35D600B97387 /* mailbox@2x.png */,
 				A1EED4C3171C770100B97387 /* Default-568h@2x.png */,
 				A1EED4C4171C770100B97387 /* Default.png */,
 				A1EED4C5171C770100B97387 /* Default@2x.png */,
@@ -463,6 +474,8 @@
 				A1EED56E171D269E00B97387 /* segment-2-active@2x.png in Resources */,
 				A1EED56F171D269E00B97387 /* segment-2.png in Resources */,
 				A1EED570171D269E00B97387 /* segment-2@2x.png in Resources */,
+				A1EED576171D35D600B97387 /* mailbox.png in Resources */,
+				A1EED577171D35D600B97387 /* mailbox@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,6 +486,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1EED573171D2EF700B97387 /* RBCustomSegmentedControl.m in Sources */,
 				A1EED4BF171C768E00B97387 /* main.m in Sources */,
 				A1EED4C0171C768E00B97387 /* RBAppDelegate.m in Sources */,
 				A1EED4C1171C768E00B97387 /* RBViewController.m in Sources */,
@@ -601,6 +615,7 @@
 				A1EED4A2171C6E5500B97387 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

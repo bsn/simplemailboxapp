@@ -10,9 +10,10 @@
 
 enum RBEmailState
 {
-    kRBEmailStateInbox = 0,
-    kRBEmailStateArchived = 1,
-    kRBEmailStateDeleted = 3
+    kRBEmailStateUnknown = 0,
+    kRBEmailStateDeleted = 1,
+    kRBEmailStateInbox = 2,
+    kRBEmailStateArchived = 3
 };
 typedef enum RBEmailState RBEmailState;
 
@@ -41,5 +42,8 @@ typedef enum RBEmailState RBEmailState;
 @property (nonatomic, readonly) NSString *date;
 
 - (id)initWithDict:(NSDictionary *)dict;
+
++ (RBEmailState)stateForSegmentIndex:(NSInteger)index;
++ (RBEmailState)stateForTriggerState:(NSInteger)state;
 
 @end

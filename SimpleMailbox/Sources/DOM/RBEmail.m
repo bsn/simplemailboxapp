@@ -7,6 +7,7 @@
 //
 
 #import "RBEmail.h"
+#import "MCSwipeTableViewCell.h"
 
 @implementation RBEmail
 
@@ -41,6 +42,26 @@
     }
 
     return self;
+}
+
++ (RBEmailState)stateForSegmentIndex:(NSInteger)index
+{
+    return (index + 1);
+}
+
++ (RBEmailState)stateForTriggerState:(NSInteger)state
+{
+    switch (state)
+    {
+        case MCSwipeTableViewCellState1:
+            return kRBEmailStateArchived;
+
+        case MCSwipeTableViewCellState3:
+            return kRBEmailStateDeleted;
+
+        default:
+            return kRBEmailStateInbox;
+    }
 }
 
 @end

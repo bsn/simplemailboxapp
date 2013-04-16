@@ -8,6 +8,10 @@
 
 #import "MCSwipeTableViewCell.h"
 
+@class RBEmail;
+
 @interface RBCell : MCSwipeTableViewCell
+
+- (void)setEmail:(RBEmail *)email;
 
 @end

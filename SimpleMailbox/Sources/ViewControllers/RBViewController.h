@@ -7,13 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RBCustomSegmentedControl.h"
 #import "RBDataProvider.h"
 #import "RBEmail.h"
 #import "RBCell.h"
 
-@interface RBViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, RBDataProviderDelegate, MCSwipeTableViewCellDelegate>
+@interface RBViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, RBDataProviderDelegate, MCSwipeTableViewCellDelegate, RBCustomSegmentedControlDelegate>
 {
 @private
+    RBCustomSegmentedControl *_segmentedControl;
     RBEmailState _selectedState;
 }
 
