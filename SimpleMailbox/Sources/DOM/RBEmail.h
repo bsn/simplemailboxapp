@@ -29,6 +29,8 @@ typedef enum RBEmailState RBEmailState;
     BOOL _starred;
     NSInteger _messages;
     __strong NSDate *_date;
+    __strong NSString *_dateStr;
+    __strong NSString *_titleStr;
 }
 
 @property (nonatomic, readonly) NSInteger ID;
@@ -40,6 +42,8 @@ typedef enum RBEmailState RBEmailState;
 @property (nonatomic, readonly) BOOL starred;
 @property (nonatomic, readonly) NSInteger messages;
 @property (nonatomic, readonly) NSDate *date;
+@property (nonatomic, readonly) NSString *dateStr;
+@property (nonatomic, readonly) NSString *titleStr;
 
 - (id)initWithDict:(NSDictionary *)dict;
 

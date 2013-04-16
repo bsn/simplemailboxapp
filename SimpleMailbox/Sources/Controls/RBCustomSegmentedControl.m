@@ -25,7 +25,7 @@
     {
         self.exclusiveTouch = YES;
 
-        _selectedItem = 1;
+        _selectedItem = 0;
         self.segmentCount = segmentCount;
 
         // The tag allows callers with multiple controls to distinguish between them

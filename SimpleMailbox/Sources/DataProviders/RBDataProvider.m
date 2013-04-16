@@ -28,6 +28,7 @@ static RBDataProvider *sSharedProvider = nil;
     if (self != nil)
     {
         _emails = [[NSMutableArray alloc] initWithCapacity:0];
+        _filteredEmails = [[NSMutableDictionary alloc] initWithCapacity:0];
         _networking = [[RBNetworking alloc] init];
 
         [self restore];
@@ -53,8 +54,16 @@ static RBDataProvider *sSharedProvider = nil;
 
 - (NSArray *)emailsForState:(RBEmailState)state
 {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"state == %d", state];
-    NSArray *emails = [_emails filteredArrayUsingPredicate:predicate];
+    if ([_emails count] == 0)
+        return nil;
+
+    NSArray *emails = [_filteredEmails objectForKey:[NSNumber numberWithInt:state]];
+    if (emails == nil)
+    {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"state == %d", state];
+        emails = [_emails filteredArrayUsingPredicate:predicate];
+        [_filteredEmails setObject:emails forKey:[NSNumber numberWithInt:state]];
+    }
 
     return emails;
 }
@@ -115,6 +124,8 @@ static RBDataProvider *sSharedProvider = nil;
 - (void)reset
 {
     _pagination = nil;
+    for (RBEmail *email in _emails)
+        [email removeObserver:self forKeyPath:@"state"];
     [_emails removeAllObjects];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:RB_EMAILS_KEY];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:RB_PAGINATION_KEY];
@@ -128,32 +139,52 @@ static RBDataProvider *sSharedProvider = nil;
 - (void)_getEmailsForPage:(NSInteger)page
 {
     [_networking getEmailsForPage:page completionBlock:^(NSDictionary *result) {
-        if (page == 0)
-        {
-            [_emails removeAllObjects];
-            _pagination = nil;
-        }
+        // Starting background thread to create objects from dictionaries
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            @autoreleasepool
+            {
+                NSMutableArray* items = [NSMutableArray arrayWithCapacity:0];
+                for (NSDictionary* dict in [result objectForKey:@"emails"])
+                {
+                    RBEmail *email = [[RBEmail alloc] initWithDict:dict];
+                    [email addObserver:self forKeyPath:@"state" options:NSKeyValueObservingOptionNew context:nil];
+                    [items addObject:email];
+                }
 
-        for (NSDictionary* dict in [result objectForKey:@"emails"])
-        {
-            RBEmail *email = [[RBEmail alloc] initWithDict:dict];
-            [_emails addObject:email];
-        }
+                // Merging objects and asking delegate to reload
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    // For possible refresh
+                    if (page == 0)
+                    {
+                        [_emails removeAllObjects];
+                        _pagination = nil;
+                    }
 
-        _pagination = [[RBPagination alloc] initWithDict:[result objectForKey:@"pagination"]];
-        // Note: Hack to deal with pagination issue, when current_page < total, but emails array is empty => no need to load more next time
-        BOOL hasMore = [[result objectForKey:@"emails"] count] > 0;
-        if (!hasMore)
-            _pagination.currentPage = _pagination.totalPages;
+                    [_emails addObjectsFromArray:items];
 
-        [self save];
+                    _pagination = [[RBPagination alloc] initWithDict:[result objectForKey:@"pagination"]];
+                    // Note: Hack to deal with pagination issue, when current_page < total, but emails array is empty => no need to load more next time
+                    BOOL hasMore = [[result objectForKey:@"emails"] count] > 0;
+                    if (!hasMore)
+                        _pagination.currentPage = _pagination.totalPages;
 
-        if ([self.delegate conformsToProtocol:@protocol(RBDataProviderDelegate)])
-            [self.delegate emailsDidFetched:hasMore];
+                    [_filteredEmails removeObjectForKey:[NSNumber numberWithInt:kRBEmailStateInbox]];
+
+                    if ([self.delegate conformsToProtocol:@protocol(RBDataProviderDelegate)])
+                        [self.delegate emailsDidFetched:hasMore];
+                });
+            }
+        });
+
     } errorBlock:^(NSError *error) {
         if ([self.delegate conformsToProtocol:@protocol(RBDataProviderDelegate)])
             [self.delegate emailsFetchingFailedWithError:error];
     }];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    [_filteredEmails removeAllObjects];
 }
 
 @end

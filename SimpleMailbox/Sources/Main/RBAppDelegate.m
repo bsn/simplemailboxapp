@@ -8,6 +8,7 @@
 
 #import "RBAppDelegate.h"
 #import "RBViewController.h"
+#import "RBDataProvider.h"
 
 @implementation RBAppDelegate
 
@@ -17,7 +18,13 @@
     self.viewController = [[RBViewController alloc] initWithNibName:@"RBViewController" bundle:nil];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
+
     return YES;
+}
+
+- (void)applicationDidEnterBackground:(UIApplication *)application
+{
+    [[RBDataProvider sharedProvider] save];
 }
 
 @end

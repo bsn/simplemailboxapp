@@ -17,7 +17,6 @@
 @private
     RBCustomSegmentedControl *_segmentedControl;
     RBEmailState _selectedState;
-    __strong NSArray *_emails;
 }
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;

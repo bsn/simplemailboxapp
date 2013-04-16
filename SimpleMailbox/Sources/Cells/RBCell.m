@@ -8,7 +8,6 @@
 
 #import "RBCell.h"
 #import "RBEmail.h"
-#import "NSDate+Helper.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define RB_ARCHIVE_COLOR [UIColor colorWithRed:0.38f green:0.85f blue:0.38f alpha:1.00f]
@@ -22,12 +21,6 @@
 #define RB_COUNTER_LABEL_TEXT_COLOR [UIColor whiteColor]
 #define RB_COUNTER_LABEL_BG_COLOR [UIColor colorWithRed:0.53f green:0.53f blue:0.53f alpha:1.00f]
 #define RB_SEPARATOR_COLOR [UIColor colorWithRed:0.75f green:0.75f blue:0.75f alpha:1.00f]
-
-static NSRegularExpression *sAddressRegExp = nil;
-
-@interface RBCell (Private)
-+ (NSString *)_stringWithFrom:(NSString *)from to:(NSString *)to;
-@end
 
 @implementation RBCell
 
@@ -102,11 +95,11 @@ static NSRegularExpression *sAddressRegExp = nil;
 
 - (void)setEmail:(RBEmail *)email
 {
-    _topLabel.text = [RBCell _stringWithFrom:email.from to:email.to];
+    _topLabel.text = email.titleStr;
     _subjLabel.text = email.subject;
     _bodyLabel.text = email.body;
     _favImageView.hidden = !email.starred;
-    _dateLabel.text = [NSDate dateStringWithDate:email.date];
+    _dateLabel.text = email.dateStr;
     _counterLabel.text = [NSString stringWithFormat:@"%d", email.messages];
     _counterLabel.hidden = (email.messages <= 1);
 
@@ -139,24 +132,6 @@ static NSRegularExpression *sAddressRegExp = nil;
     _bodyLabel.frame = CGRectMake(textOffsetLeft, CGRectGetMaxY(_subjLabel.frame) - 2., textWidth, [@"A" sizeWithFont:_bodyLabel.font].height * 2.);
     _dateLabel.frame = CGRectMake(CGRectGetWidth(self.contentView.bounds) - 80, marginTop, 63., [@"A" sizeWithFont:_dateLabel.font].height);
     _separatorLineView.frame = CGRectMake(0., CGRectGetHeight(self.contentView.bounds) - 1., CGRectGetWidth(self.contentView.bounds), 1.);
-}
-
-#pragma mark -
-#pragma mark *** Private Interface ***
-#pragma mark -
-
-+ (NSString *)_stringWithFrom:(NSString *)from to:(NSString *)to
-{
-    if (sAddressRegExp == nil)
-        sAddressRegExp = [[NSRegularExpression alloc] initWithPattern:@" <.*>" options:NSRegularExpressionCaseInsensitive error:nil];
-
-    NSMutableString *mutableFrom = [NSMutableString stringWithString:from];
-    [sAddressRegExp replaceMatchesInString:mutableFrom options:NSMatchingReportProgress range:NSMakeRange(0, [from length]) withTemplate:@""];
-
-    NSMutableString *mutableTo = [NSMutableString stringWithString:to];
-    [sAddressRegExp replaceMatchesInString:mutableTo options:NSMatchingReportProgress range:NSMakeRange(0, [to length]) withTemplate:@""];
-
-    return [NSString stringWithFormat:@"%@ to %@", mutableFrom, mutableTo];
 }
 
 @end

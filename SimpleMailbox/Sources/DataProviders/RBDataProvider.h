@@ -24,6 +24,7 @@
     __strong RBNetworking *_networking;
     __strong RBPagination *_pagination;
     __strong NSMutableArray *_emails;
+    __strong NSMutableDictionary *_filteredEmails;
 }
 
 @property (nonatomic, weak) id <RBDataProviderDelegate> delegate;

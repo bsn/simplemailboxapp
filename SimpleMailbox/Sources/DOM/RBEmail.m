@@ -18,8 +18,16 @@
 #define RB_STARRED_KEY @"starred"
 #define RB_MESSAGES_KEY @"messages"
 #define RB_DATE_KEY @"received_at"
-
+// Syntetic:
 #define RB_STATE_KEY @"state"
+#define RB_DATE_STR_KEY @"date_str"
+#define RB_TITLE_KEY @"title"
+
+static NSRegularExpression *sAddressRegExp = nil;
+
+@interface RBEmail (Private)
++ (NSString *)_stringWithFrom:(NSString *)from to:(NSString *)to;
+@end
 
 @implementation RBEmail
 
@@ -32,6 +40,8 @@
 @synthesize starred = _starred;
 @synthesize messages = _messages;
 @synthesize date = _date;
+@synthesize dateStr = _dateStr;
+@synthesize titleStr = _titleStr;
 
 - (id)initWithDict:(NSDictionary *)dict
 {
@@ -51,6 +61,8 @@
         _starred = [[dict objectForKey:RB_STARRED_KEY] boolValue];
         _messages = [[dict objectForKey:RB_MESSAGES_KEY] integerValue];
         _date = [NSDate dateWithString:[dict objectForKey:RB_DATE_KEY]];
+        _dateStr = [NSDate dateStringWithDate:_date];
+        _titleStr = [RBEmail _stringWithFrom:_from to:_to];
     }
 
     return self;
@@ -67,6 +79,8 @@
     [encoder encodeObject:[NSNumber numberWithBool:_starred] forKey:RB_STARRED_KEY];
     [encoder encodeObject:[NSNumber numberWithInt:_messages] forKey:RB_MESSAGES_KEY];
     [encoder encodeObject:_date forKey:RB_DATE_KEY];
+    [encoder encodeObject:_dateStr forKey:RB_DATE_STR_KEY];
+    [encoder encodeObject:_titleStr forKey:RB_TITLE_KEY];
 }
 
 - (id)initWithCoder:(NSCoder *)decoder
@@ -84,6 +98,8 @@
         _starred = [[decoder decodeObjectForKey:RB_STARRED_KEY] boolValue];
         _messages = [[decoder decodeObjectForKey:RB_MESSAGES_KEY] integerValue];
         _date = [decoder decodeObjectForKey:RB_DATE_KEY];
+        _dateStr = [decoder decodeObjectForKey:RB_DATE_STR_KEY];
+        _titleStr = [decoder decodeObjectForKey:RB_TITLE_KEY];
     }
 
     return self;
@@ -107,6 +123,24 @@
         default:
             return kRBEmailStateInbox;
     }
+}
+
+#pragma mark -
+#pragma mark *** Private Interface ***
+#pragma mark -
+
++ (NSString *)_stringWithFrom:(NSString *)from to:(NSString *)to
+{
+    if (sAddressRegExp == nil)
+        sAddressRegExp = [[NSRegularExpression alloc] initWithPattern:@" <.*>" options:NSRegularExpressionCaseInsensitive error:nil];
+
+    NSMutableString *mutableFrom = [NSMutableString stringWithString:from];
+    [sAddressRegExp replaceMatchesInString:mutableFrom options:NSMatchingReportProgress range:NSMakeRange(0, [from length]) withTemplate:@""];
+
+    NSMutableString *mutableTo = [NSMutableString stringWithString:to];
+    [sAddressRegExp replaceMatchesInString:mutableTo options:NSMatchingReportProgress range:NSMakeRange(0, [to length]) withTemplate:@""];
+
+    return [NSString stringWithFormat:@"%@ to %@", mutableFrom, mutableTo];
 }
 
 @end
