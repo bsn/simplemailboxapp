@@ -139,6 +139,13 @@
     [self dimAllButtonsExcept:button];
 }
 
+- (void)setSelectedItem:(NSInteger)selectedItem
+{
+    _selectedItem = selectedItem;
+    
+    [self dimAllButtonsExcept:(UIButton *)[self viewWithTag:selectedItem]];
+}
+
 #pragma mark -
 #pragma mark *** Private Interface ***
 #pragma mark -

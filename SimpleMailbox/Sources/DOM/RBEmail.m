@@ -10,6 +10,17 @@
 #import "MCSwipeTableViewCell.h"
 #import "NSDate+Helper.h"
 
+#define RB_ID_KEY @"id"
+#define RB_FROM_KEY @"from"
+#define RB_TO_KEY @"to"
+#define RB_SUBJ_KEY @"subject"
+#define RB_BODY_KEY @"body"
+#define RB_STARRED_KEY @"starred"
+#define RB_MESSAGES_KEY @"messages"
+#define RB_DATE_KEY @"received_at"
+
+#define RB_STATE_KEY @"state"
+
 @implementation RBEmail
 
 @synthesize ID = _ID;
@@ -31,17 +42,50 @@
         if (![dict isKindOfClass:[NSDictionary class]])
             dict = nil;
 
-        _ID = [[dict objectForKey:@"id"] integerValue];
+        _ID = [[dict objectForKey:RB_ID_KEY] integerValue];
         _state = kRBEmailStateInbox;
-        _from = [dict objectForKey:@"from"];
-        _to = [dict objectForKey:@"to"];
-        _subject = [dict objectForKey:@"subject"];
-        _body = [dict objectForKey:@"body"];
-        _starred = [[dict objectForKey:@"starred"] boolValue];
-        _messages = [[dict objectForKey:@"messages"] integerValue];
-        _date = [NSDate dateWithString:[dict objectForKey:@"received_at"]];
+        _from = [dict objectForKey:RB_FROM_KEY];
+        _to = [dict objectForKey:RB_TO_KEY];
+        _subject = [dict objectForKey:RB_SUBJ_KEY];
+        _body = [dict objectForKey:RB_BODY_KEY];
+        _starred = [[dict objectForKey:RB_STARRED_KEY] boolValue];
+        _messages = [[dict objectForKey:RB_MESSAGES_KEY] integerValue];
+        _date = [NSDate dateWithString:[dict objectForKey:RB_DATE_KEY]];
     }
 
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)encoder
+{
+    [encoder encodeObject:[NSNumber numberWithInt:_ID] forKey:RB_ID_KEY];
+    [encoder encodeObject:[NSNumber numberWithInt:_state] forKey:RB_STATE_KEY];
+    [encoder encodeObject:_from forKey:RB_FROM_KEY];
+    [encoder encodeObject:_to forKey:RB_TO_KEY];
+    [encoder encodeObject:_subject forKey:RB_SUBJ_KEY];
+    [encoder encodeObject:_body forKey:RB_BODY_KEY];
+    [encoder encodeObject:[NSNumber numberWithBool:_starred] forKey:RB_STARRED_KEY];
+    [encoder encodeObject:[NSNumber numberWithInt:_messages] forKey:RB_MESSAGES_KEY];
+    [encoder encodeObject:_date forKey:RB_DATE_KEY];
+}
+
+- (id)initWithCoder:(NSCoder *)decoder
+{
+    self = [super init];
+    
+    if (self != nil)
+    {
+        _ID = [[decoder decodeObjectForKey:RB_ID_KEY] integerValue];
+        _state = [[decoder decodeObjectForKey:RB_STATE_KEY] integerValue];;
+        _from = [decoder decodeObjectForKey:RB_FROM_KEY];
+        _to = [decoder decodeObjectForKey:RB_TO_KEY];
+        _subject = [decoder decodeObjectForKey:RB_SUBJ_KEY];
+        _body = [decoder decodeObjectForKey:RB_BODY_KEY];
+        _starred = [[decoder decodeObjectForKey:RB_STARRED_KEY] boolValue];
+        _messages = [[decoder decodeObjectForKey:RB_MESSAGES_KEY] integerValue];
+        _date = [decoder decodeObjectForKey:RB_DATE_KEY];
+    }
+    
     return self;
 }
 

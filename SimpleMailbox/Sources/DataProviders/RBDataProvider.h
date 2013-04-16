@@ -35,6 +35,8 @@
 - (void)getEmails;
 - (BOOL)loadMore;
 
+- (void)save;
+- (void)restore;
 - (void)reset;
 
 @end

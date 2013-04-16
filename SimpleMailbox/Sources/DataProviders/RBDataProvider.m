@@ -26,6 +26,11 @@ static RBDataProvider *sSharedProvider = nil;
     {
         _emails = [[NSMutableArray alloc] initWithCapacity:0];
         _networking = [[RBNetworking alloc] init];
+        
+        [self restore];
+        
+        if ([_emails count] == 0)
+            [self getEmails];
     }
 
     return self;
@@ -67,9 +72,36 @@ static RBDataProvider *sSharedProvider = nil;
         return NO;
 }
 
+- (void)save
+{
+    NSMutableArray *array = [NSMutableArray arrayWithCapacity:0];
+    
+    for (RBEmail *email in _emails)
+    {
+        NSData *encodedObject = [NSKeyedArchiver archivedDataWithRootObject:email];
+        [array addObject:encodedObject];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setObject:array forKey:@"emails"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)restore
+{
+    [_emails removeAllObjects];
+    
+    for (NSData *data in [[NSUserDefaults standardUserDefaults] objectForKey:@"emails"])
+    {
+        RBEmail *email = (RBEmail *)[NSKeyedUnarchiver unarchiveObjectWithData:data];
+        [_emails addObject:email];
+    }
+}
+
 - (void)reset
 {
     [_emails removeAllObjects];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"emails"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 #pragma mark -
@@ -90,6 +122,8 @@ static RBDataProvider *sSharedProvider = nil;
             RBEmail *email = [[RBEmail alloc] initWithDict:dict];
             [_emails addObject:email];
         }
+        
+        [self save];
 
         _pagination = [[RBPagination alloc] initWithDict:[result objectForKey:@"pagination"]];
 

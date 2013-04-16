@@ -32,17 +32,10 @@
 
     _selectedState = kRBEmailStateInbox;
 
-    [RBDataProvider sharedProvider].delegate = self;
-
-    self.tableView.hidden = YES;
     [self.tableView addInfiniteScrollingWithActionHandler:^{ [[RBDataProvider sharedProvider] loadMore]; }];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-
-    [[RBDataProvider sharedProvider] getEmails];
+    
+    [RBDataProvider sharedProvider].delegate = self;
+    [self.tableView reloadData];
 }
 
 - (void)viewDidUnload
@@ -59,6 +52,8 @@
 - (IBAction)refreshAction:(id)sender
 {
     [[RBDataProvider sharedProvider] reset];
+    _selectedState = kRBEmailStateInbox;
+    _segmentedControl.selectedItem = 1;
     [self.tableView reloadData];
     [[RBDataProvider sharedProvider] getEmails];
 }
@@ -69,7 +64,6 @@
 
 - (void)emailsDidFetched:(BOOL)hasMore
 {
-    self.tableView.hidden = NO;
     [self.tableView.infiniteScrollingView stopAnimating];
     self.tableView.showsInfiniteScrolling = hasMore;
     [self.tableView reloadData];
@@ -128,6 +122,8 @@
     RBEmailState emailState = [RBEmail stateForTriggerState:state];
     email.state = (emailState == _selectedState) ? kRBEmailStateInbox : emailState;
     [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    
+    [[RBDataProvider sharedProvider] save];
 }
 
 #pragma mark -
