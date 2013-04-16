@@ -14,7 +14,7 @@
 
 @protocol RBDataProviderDelegate <NSObject>
 @required
-- (void)emailsDidFetched;
+- (void)emailsDidFetched:(BOOL)hasMore;
 - (void)emailsFetchingFailedWithError:(NSError *)error;
 @end
 

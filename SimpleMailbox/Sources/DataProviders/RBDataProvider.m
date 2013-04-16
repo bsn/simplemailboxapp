@@ -94,11 +94,12 @@ static RBDataProvider *sSharedProvider = nil;
         _pagination = [[RBPagination alloc] initWithDict:[result objectForKey:@"pagination"]];
 
         // Note: Hack to deal with pagination issue, when current_page < total, but emails array is empty => no need to load more next time
-        if (page != 0 && [[result objectForKey:@"emails"] count] == 0)
+        BOOL hasMore = [[result objectForKey:@"emails"] count] > 0;
+        if (!hasMore)
             _pagination.currentPage = _pagination.totalPages;
 
         if ([self.delegate conformsToProtocol:@protocol(RBDataProviderDelegate)])
-            [self.delegate emailsDidFetched];
+            [self.delegate emailsDidFetched:hasMore];
     } errorBlock:^(NSError *error) {
         if ([self.delegate conformsToProtocol:@protocol(RBDataProviderDelegate)])
             [self.delegate emailsFetchingFailedWithError:error];

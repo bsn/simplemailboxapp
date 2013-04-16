@@ -28,14 +28,7 @@
     [RBDataProvider sharedProvider].delegate = self;
 
     self.tableView.hidden = YES;
-    __weak __typeof(&*self) weakSelf = self;
-    [self.tableView addInfiniteScrollingWithActionHandler:^{
-        if (![[RBDataProvider sharedProvider] loadMore])
-        {
-            [weakSelf.tableView.infiniteScrollingView stopAnimating];
-            weakSelf.tableView.showsInfiniteScrolling = NO;
-        }
-    }];
+    [self.tableView addInfiniteScrollingWithActionHandler:^{ [[RBDataProvider sharedProvider] loadMore]; }];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -56,10 +49,11 @@
 #pragma mark *** RBDataProvider Delegate Interface ***
 #pragma mark -
 
-- (void)emailsDidFetched
+- (void)emailsDidFetched:(BOOL)hasMore
 {
     self.tableView.hidden = NO;
     [self.tableView.infiniteScrollingView stopAnimating];
+    self.tableView.showsInfiniteScrolling = hasMore;
     [self.tableView reloadData];
 }
 
