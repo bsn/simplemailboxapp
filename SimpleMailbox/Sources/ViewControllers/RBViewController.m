@@ -46,6 +46,17 @@
 }
 
 #pragma mark -
+#pragma mark *** Public Interface ***
+#pragma mark -
+
+- (IBAction)refreshAction:(id)sender
+{
+    [[RBDataProvider sharedProvider] reset];
+    [self.tableView reloadData];
+    [[RBDataProvider sharedProvider] getEmails];    
+}
+
+#pragma mark -
 #pragma mark *** RBDataProvider Delegate Interface ***
 #pragma mark -
 
@@ -63,7 +74,7 @@
     if (messageText == nil)
         messageText = [NSString stringWithFormat:@"%@ - %d", [error domain], [error code]];
 
-    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:messageText message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles:nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:messageText message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles:nil];
     [alertView show];
 }
 

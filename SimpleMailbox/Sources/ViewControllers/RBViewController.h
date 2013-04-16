@@ -18,5 +18,9 @@
 }
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) IBOutlet UIView *topBarView;
+@property (nonatomic, strong) IBOutlet UIButton *refreshButton;
+
+- (IBAction)refreshAction:(id)sender;
 
 @end
