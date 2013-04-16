@@ -31,7 +31,9 @@
             NSError *error = nil;
             NSDictionary *responseDict = nil;
             {
-                NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:RB_BASE_URL, page]]];
+                NSString* urlStr = [NSString stringWithFormat:RB_BASE_URL, page];
+                NSLog(@"REQ: %@", urlStr);
+                NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
                 NSHTTPURLResponse *response = nil;
                 NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
 

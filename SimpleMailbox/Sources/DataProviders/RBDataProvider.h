@@ -33,7 +33,7 @@
 - (NSArray *)emailsForState:(RBEmailState)state;
 
 - (void)getEmails;
-- (void)loadMore;
+- (BOOL)loadMore;
 
 - (void)reset;
 

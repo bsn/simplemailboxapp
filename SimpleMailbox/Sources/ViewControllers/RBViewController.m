@@ -7,6 +7,7 @@
 //
 
 #import "RBViewController.h"
+#import "SVPullToRefresh.h"
 
 @interface RBViewController (Private)
 @end
@@ -27,6 +28,14 @@
     [RBDataProvider sharedProvider].delegate = self;
 
     self.tableView.hidden = YES;
+    __weak __typeof(&*self) weakSelf = self;
+    [self.tableView addInfiniteScrollingWithActionHandler:^{
+        if (![[RBDataProvider sharedProvider] loadMore])
+        {
+            [weakSelf.tableView.infiniteScrollingView stopAnimating];
+            weakSelf.tableView.showsInfiniteScrolling = NO;
+        }
+    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -50,6 +59,7 @@
 - (void)emailsDidFetched
 {
     self.tableView.hidden = NO;
+    [self.tableView.infiniteScrollingView stopAnimating];
     [self.tableView reloadData];
 }
 
@@ -106,13 +116,10 @@
 
 - (void)swipeTableViewCell:(MCSwipeTableViewCell *)cell didTriggerState:(MCSwipeTableViewCellState)state withMode:(MCSwipeTableViewCellMode)mode
 {
-    if (mode == MCSwipeTableViewCellModeExit)
-    {
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        RBEmail *email = [[[RBDataProvider sharedProvider] emailsForState:_selectedState] objectAtIndex:indexPath.row];
-        email.state = (RBEmailState)state;
-        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    RBEmail *email = [[[RBDataProvider sharedProvider] emailsForState:_selectedState] objectAtIndex:indexPath.row];
+    email.state = (RBEmailState)state;
+    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 @end

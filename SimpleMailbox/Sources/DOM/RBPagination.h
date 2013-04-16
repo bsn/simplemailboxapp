@@ -17,7 +17,7 @@
 }
 
 @property (nonatomic, readonly) NSInteger perPage;
-@property (nonatomic, readonly) NSInteger currentPage;
+@property (nonatomic, assign) NSInteger currentPage;
 @property (nonatomic, readonly) NSInteger totalPages;
 
 - (id)initWithDict:(NSDictionary *)dict;

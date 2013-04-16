@@ -56,10 +56,15 @@ static RBDataProvider *sSharedProvider = nil;
     [self _getEmailsForPage:0];
 }
 
-- (void)loadMore
+- (BOOL)loadMore
 {
     if (_pagination.currentPage < _pagination.totalPages)
+    {
         [self _getEmailsForPage:(_pagination.currentPage + 1)];
+        return YES;
+    }
+    else
+        return NO;
 }
 
 - (void)reset
@@ -87,6 +92,10 @@ static RBDataProvider *sSharedProvider = nil;
         }
 
         _pagination = [[RBPagination alloc] initWithDict:[result objectForKey:@"pagination"]];
+
+        // Note: Hack to deal with pagination issue, when current_page < total, but emails array is empty => no need to load more next time
+        if (page != 0 && [[result objectForKey:@"emails"] count] == 0)
+            _pagination.currentPage = _pagination.totalPages;
 
         if ([self.delegate conformsToProtocol:@protocol(RBDataProviderDelegate)])
             [self.delegate emailsDidFetched];
