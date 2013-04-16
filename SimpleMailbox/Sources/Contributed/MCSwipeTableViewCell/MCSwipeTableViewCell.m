@@ -163,7 +163,7 @@ secondStateIconName:(NSString *)secondIconName
     else if (state == UIGestureRecognizerStateEnded || state == UIGestureRecognizerStateCancelled) {
         _currentImageName = [self imageNameWithPercentage:percentage];
         _currentPercentage = percentage;
-        MCSwipeTableViewCellState cellState= [self stateWithPercentage:percentage];
+        MCSwipeTableViewCellState cellState = [self stateWithPercentage:percentage];
 
         if (_mode == MCSwipeTableViewCellModeExit && _direction != MCSwipeTableViewCellDirectionCenter && [self validateState:cellState])
             [self moveWithDuration:animationDuration andDirection:_direction];
@@ -266,7 +266,7 @@ secondStateIconName:(NSString *)secondIconName
     else if (percentage <= -kMCStop2)
         color = _fourthColor;
     else
-        color = [UIColor clearColor];
+        color = [UIColor lightGrayColor];
 
     return color;
 }

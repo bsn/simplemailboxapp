@@ -11,8 +11,8 @@
 #import "NSDate+Helper.h"
 #import <QuartzCore/QuartzCore.h>
 
-#define RB_ARCHIVE_COLOR [UIColor colorWithRed:85.0/255.0 green:213.0/255.0 blue:80.0/255.0 alpha:1.0]
-#define RB_DELETED_COLOR [UIColor colorWithRed:232.0/255.0 green:61.0/255.0 blue:14.0/255.0 alpha:1.0]
+#define RB_ARCHIVE_COLOR [UIColor colorWithRed:0.38f green:0.85f blue:0.38f alpha:1.00f]
+#define RB_DELETED_COLOR [UIColor colorWithRed:1.00f green:0.87f blue:0.27f alpha:1.00f]
 #define RB_MAILBOX_COLOR [UIColor colorWithRed:0.32f green:0.73f blue:0.86f alpha:1.00f]
 
 #define RB_TOP_LABEL_COLOR [UIColor colorWithRed:0.25f green:0.25f blue:0.25f alpha:1.00f]
@@ -85,8 +85,7 @@ static NSRegularExpression *sAddressRegExp = nil;
         _favImageView.hidden = YES;
         [self.contentView addSubview:_favImageView];
         
-        _rightIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"fav-icon"]];
-        _rightIconView.hidden = YES; // remove me!
+        _rightIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow"]];
         [self.contentView addSubview:_rightIconView];
         
         _separatorLineView = [[UIView alloc] initWithFrame:CGRectZero];

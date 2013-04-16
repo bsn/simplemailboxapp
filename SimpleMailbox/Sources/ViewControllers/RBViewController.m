@@ -25,7 +25,7 @@
 
     if (_segmentedControl == nil)
     {
-        _segmentedControl = [[RBCustomSegmentedControl alloc] initWithSegmentCount:3 segmentsize:CGSizeMake(54., 32.) dividerImage:nil tag:0 delegate:self];
+        _segmentedControl = [[RBCustomSegmentedControl alloc] initWithSegmentCount:3 segmentsize:CGSizeMake(53., 32.) dividerImage:nil tag:0 delegate:self];
         [self.topBarView addSubview:_segmentedControl];
         _segmentedControl.center = CGPointMake(CGRectGetMidX(self.topBarView.bounds), CGRectGetMidY(self.topBarView.bounds));
     }
