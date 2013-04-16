@@ -8,10 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
+enum RBEmailState
+{
+    kRBEmailStateInbox = 0,
+    kRBEmailStateArchived = 1,
+    kRBEmailStateDeleted = 3
+};
+typedef enum RBEmailState RBEmailState;
+
 @interface RBEmail : NSObject
 {
 @private
     NSInteger _ID;
+    RBEmailState _state;
     __strong NSString *_from;
     __strong NSString *_to;
     __strong NSString *_subject;
@@ -22,6 +31,7 @@
 }
 
 @property (nonatomic, readonly) NSInteger ID;
+@property (nonatomic, assign) RBEmailState state;
 @property (nonatomic, readonly) NSString *from;
 @property (nonatomic, readonly) NSString *to;
 @property (nonatomic, readonly) NSString *subject;

@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RBDataProvider.h"
+#import "RBEmail.h"
+#import "RBCell.h"
 
-@interface RBViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface RBViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, RBDataProviderDelegate, MCSwipeTableViewCellDelegate>
 {
 @private
+    RBEmailState _selectedState;
 }
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;

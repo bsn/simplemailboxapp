@@ -11,6 +11,7 @@
 @implementation RBEmail
 
 @synthesize ID = _ID;
+@synthesize state = _state;
 @synthesize from = _from;
 @synthesize to = _to;
 @synthesize subject = _subject;
@@ -29,6 +30,7 @@
             dict = nil;
 
         _ID = [[dict objectForKey:@"id"] integerValue];
+        _state = kRBEmailStateInbox;
         _from = [dict objectForKey:@"from"];
         _to = [dict objectForKey:@"to"];
         _subject = [dict objectForKey:@"subject"];
