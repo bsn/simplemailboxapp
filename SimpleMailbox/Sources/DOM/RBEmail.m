@@ -20,8 +20,6 @@
 #define RB_DATE_KEY @"received_at"
 // Syntetic:
 #define RB_STATE_KEY @"state"
-#define RB_DATE_STR_KEY @"date_str"
-#define RB_TITLE_KEY @"title"
 
 static NSRegularExpression *sAddressRegExp = nil;
 
@@ -79,8 +77,6 @@ static NSRegularExpression *sAddressRegExp = nil;
     [encoder encodeObject:[NSNumber numberWithBool:_starred] forKey:RB_STARRED_KEY];
     [encoder encodeObject:[NSNumber numberWithInt:_messages] forKey:RB_MESSAGES_KEY];
     [encoder encodeObject:_date forKey:RB_DATE_KEY];
-    [encoder encodeObject:_dateStr forKey:RB_DATE_STR_KEY];
-    [encoder encodeObject:_titleStr forKey:RB_TITLE_KEY];
 }
 
 - (id)initWithCoder:(NSCoder *)decoder
@@ -98,8 +94,8 @@ static NSRegularExpression *sAddressRegExp = nil;
         _starred = [[decoder decodeObjectForKey:RB_STARRED_KEY] boolValue];
         _messages = [[decoder decodeObjectForKey:RB_MESSAGES_KEY] integerValue];
         _date = [decoder decodeObjectForKey:RB_DATE_KEY];
-        _dateStr = [decoder decodeObjectForKey:RB_DATE_STR_KEY];
-        _titleStr = [decoder decodeObjectForKey:RB_TITLE_KEY];
+        _dateStr = [NSDate dateStringWithDate:_date];
+        _titleStr = [RBEmail _stringWithFrom:_from to:_to];
     }
 
     return self;

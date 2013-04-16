@@ -113,6 +113,7 @@ static RBDataProvider *sSharedProvider = nil;
     for (NSData *data in [[NSUserDefaults standardUserDefaults] objectForKey:RB_EMAILS_KEY])
     {
         RBEmail *email = (RBEmail *)[NSKeyedUnarchiver unarchiveObjectWithData:data];
+        [email addObserver:self forKeyPath:@"state" options:NSKeyValueObservingOptionNew context:nil];
         [_emails addObject:email];
     }
 
