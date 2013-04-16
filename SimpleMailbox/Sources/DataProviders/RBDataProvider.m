@@ -34,7 +34,7 @@ static RBDataProvider *sSharedProvider = nil;
         [self restore];
 
         if ([_emails count] == 0)
-            [self getEmails];
+            [self performSelector:@selector(getEmails) withObject:nil afterDelay:0.0];
     }
 
     return self;

@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface RBNetworking : NSObject
+{
+@private
+    __strong NSOperationQueue *_networkingQueue;
+}
 
 - (void)getEmailsForPage:(NSUInteger)page completionBlock:(void (^)(NSDictionary* result))completionBlock errorBlock:(void (^)(NSError* error))errorBlock; // main API request
 

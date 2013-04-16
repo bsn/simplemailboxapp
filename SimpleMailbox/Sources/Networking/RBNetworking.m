@@ -7,11 +7,29 @@
 //
 
 #import "RBNetworking.h"
+#import "AFNetworking.h"
 #import "TWStatus.h"
 
 #define RB_BASE_URL @"http://rocket-ios.herokuapp.com/emails.json?page=%d"
 
+@interface RBNetworking (Private)
+- (BOOL)_isAlreadyQueued:(AFJSONRequestOperation*)opetation;
+@end
+
 @implementation RBNetworking
+
+- (id)init
+{
+    self = [super init];
+
+    if (self != nil)
+    {
+        _networkingQueue = [[NSOperationQueue alloc] init];
+        [_networkingQueue setMaxConcurrentOperationCount:1]; // quite enough for this task
+    }
+
+    return self;
+}
 
 #pragma mark -
 #pragma mark *** Public Interface ***
@@ -22,50 +40,38 @@
     if (completionBlock == nil || errorBlock == nil)
         NSAssert(0, @"Oops, empty blocks are not allowed!");
 
-    [TWStatus showLoadingWithStatus:NSLocalizedString(@"Fetching emails...", @"")];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:RB_BASE_URL, page]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
 
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        [TWStatus dismiss];
+        if ([JSON isKindOfClass:[NSDictionary class]])
+            completionBlock((NSDictionary *)JSON);
+        else
+            errorBlock([NSError errorWithDomain:@"ServerError" code:500 userInfo:nil]);
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        [TWStatus dismiss];
+        errorBlock(error);
+    }];
 
-        @autoreleasepool
-        {
-            NSError *error = nil;
-            NSDictionary *responseDict = nil;
-            {
-                NSString* urlStr = [NSString stringWithFormat:RB_BASE_URL, page];
-                NSLog(@"REQ: %@", urlStr);
-                NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
-                NSHTTPURLResponse *response = nil;
-                NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    if (![self _isAlreadyQueued:operation])
+    {
+        [TWStatus showLoadingWithStatus:NSLocalizedString(@"Fetching emails...", @"")];
+        [_networkingQueue addOperation:operation];
+    }
+}
 
-                // Connection Error Handling
-                if (error != nil)
-                    goto bail_out;
+#pragma mark -
+#pragma mark *** Private Interface ***
+#pragma mark -
 
-                responseDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-                if (error != nil)
-                    goto bail_out;
+- (BOOL)_isAlreadyQueued:(AFJSONRequestOperation*)opetation
+{
+    for (AFJSONRequestOperation *op in [_networkingQueue operations])
+        if ([[[[op request] URL] absoluteString] isEqualToString:[[[opetation request] URL] absoluteString]])
+            return YES;
 
-                if (error != nil || ![responseDict isKindOfClass:[NSDictionary class]])
-                {
-                    error = [NSError errorWithDomain:@"ServerError" code:500 userInfo:nil];
-                    goto bail_out;
-                }
-
-                dispatch_sync(dispatch_get_main_queue(), ^{
-                    [TWStatus dismiss];
-                    completionBlock(responseDict);
-                });
-            }
-
-        bail_out:;
-            if (error != nil)
-                dispatch_sync(dispatch_get_main_queue(), ^{
-                    [TWStatus dismiss];
-                    errorBlock(error);
-                });
-        }
-
-    });
+    return NO;
 }
 
 @end

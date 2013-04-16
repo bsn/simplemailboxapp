@@ -8,7 +8,6 @@
 
 #import "RBCell.h"
 #import "RBEmail.h"
-#import <QuartzCore/QuartzCore.h>
 
 #define RB_ARCHIVE_COLOR [UIColor colorWithRed:0.38f green:0.85f blue:0.38f alpha:1.00f]
 #define RB_DELETED_COLOR [UIColor colorWithRed:1.00f green:0.87f blue:0.27f alpha:1.00f]
