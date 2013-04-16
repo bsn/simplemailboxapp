@@ -156,6 +156,8 @@ static RBDataProvider *sSharedProvider = nil;
                     // For possible refresh
                     if (page == 0)
                     {
+                        for (RBEmail *email in _emails)
+                            [email removeObserver:self forKeyPath:@"state"];
                         [_emails removeAllObjects];
                         _pagination = nil;
                     }
