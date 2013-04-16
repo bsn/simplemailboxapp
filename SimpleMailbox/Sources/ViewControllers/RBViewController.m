@@ -10,6 +10,7 @@
 #import "SVPullToRefresh.h"
 
 @interface RBViewController (Private)
+- (NSArray*)_emails;
 @end
 
 @implementation RBViewController
@@ -26,6 +27,7 @@
     if (_segmentedControl == nil)
     {
         _segmentedControl = [[RBCustomSegmentedControl alloc] initWithSegmentCount:3 segmentsize:CGSizeMake(53., 32.) dividerImage:nil tag:0 delegate:self];
+        _segmentedControl.selectedItem = 1;
         [self.topBarView addSubview:_segmentedControl];
         _segmentedControl.center = CGPointMake(CGRectGetMidX(self.topBarView.bounds), CGRectGetMidY(self.topBarView.bounds));
     }
@@ -52,9 +54,7 @@
 - (IBAction)refreshAction:(id)sender
 {
     [[RBDataProvider sharedProvider] reset];
-    _selectedState = kRBEmailStateInbox;
     _segmentedControl.selectedItem = 1;
-    [self.tableView reloadData];
     [[RBDataProvider sharedProvider] getEmails];
 }
 
@@ -64,6 +64,7 @@
 
 - (void)emailsDidFetched:(BOOL)hasMore
 {
+    _emails = nil;
     [self.tableView.infiniteScrollingView stopAnimating];
     self.tableView.showsInfiniteScrolling = hasMore;
     [self.tableView reloadData];
@@ -85,7 +86,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[[RBDataProvider sharedProvider] emailsForState:_selectedState] count];
+    return [[self _emails] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -103,7 +104,7 @@
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [(RBCell *)cell setDelegate:self];
-    [(RBCell *)cell setEmail:[[[RBDataProvider sharedProvider] emailsForState:_selectedState] objectAtIndex:indexPath.row]];
+    [(RBCell *)cell setEmail:[[self _emails] objectAtIndex:indexPath.row]];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -118,9 +119,11 @@
 - (void)swipeTableViewCell:(MCSwipeTableViewCell *)cell didTriggerState:(MCSwipeTableViewCellState)state withMode:(MCSwipeTableViewCellMode)mode
 {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    RBEmail *email = [[[RBDataProvider sharedProvider] emailsForState:_selectedState] objectAtIndex:indexPath.row];
+    RBEmail *email = [[self _emails] objectAtIndex:indexPath.row];
     RBEmailState emailState = [RBEmail stateForTriggerState:state];
     email.state = (emailState == _selectedState) ? kRBEmailStateInbox : emailState;
+
+    _emails = nil;
     [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 
     [[RBDataProvider sharedProvider] save];
@@ -132,8 +135,21 @@
 
 - (void)touchUpInsideSegmentIndex:(NSUInteger)segmentIndex
 {
+    _emails = nil;
     _selectedState = [RBEmail stateForSegmentIndex:segmentIndex];
     [self.tableView reloadData];
+}
+
+#pragma mark -
+#pragma mark *** Private Interface ***
+#pragma mark -
+
+- (NSArray*)_emails
+{
+    if ([_emails count] == 0)
+        _emails = [[RBDataProvider sharedProvider] emailsForState:_selectedState];
+
+    return _emails;
 }
 
 @end

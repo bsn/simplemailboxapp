@@ -25,10 +25,10 @@
     {
         self.exclusiveTouch = YES;
 
-        self.selectedItem = 1;
+        _selectedItem = 1;
         self.segmentCount = segmentCount;
 
-        // The tag allows callers withe multiple controls to distinguish between them
+        // The tag allows callers with multiple controls to distinguish between them
         self.tag = objectTag;
 
         // Set the delegate
@@ -48,7 +48,6 @@
             // Iterate through each segment
             for (NSUInteger i = 0 ; i < segmentCount ; i++)
             {
-                // Ask the delegate to create a button
                 UIButton *button = [self _buttonForIndex:i];
                 button.exclusiveTouch = YES;
 
@@ -141,7 +140,7 @@
 
 - (void)setSelectedItem:(NSInteger)selectedItem
 {
-    [self touchDownAction:(UIButton *)[self viewWithTag:selectedItem]];
+    [self touchUpInsideAction:(UIButton *)[self viewWithTag:selectedItem]];
 }
 
 #pragma mark -
@@ -164,6 +163,7 @@
     [button setBackgroundImage:imageNormal forState:UIControlStateNormal];
     [button setBackgroundImage:imageHighlighted forState:UIControlStateHighlighted];
     [button setBackgroundImage:imageHighlighted forState:UIControlStateSelected];
+    [button setBackgroundImage:imageHighlighted forState:(UIControlStateHighlighted|UIControlStateSelected)];
 
     return button;
 }

@@ -69,6 +69,7 @@ static RBDataProvider *sSharedProvider = nil;
     if (_pagination.currentPage < _pagination.totalPages)
     {
         [self _getEmailsForPage:(_pagination.currentPage + 1)];
+
         return YES;
     }
     else
