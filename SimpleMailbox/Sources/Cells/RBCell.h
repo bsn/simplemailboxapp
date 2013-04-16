@@ -11,6 +11,17 @@
 @class RBEmail;
 
 @interface RBCell : MCSwipeTableViewCell
+{
+@private
+    UILabel *_topLabel;
+    UILabel *_subjLabel;
+    UILabel *_bodyLabel;
+    UIImageView *_favImageView;
+    UILabel *_dateLabel;
+    UILabel *_counterLabel;
+    UIImageView *_rightIconView;
+    UIView *_separatorLineView;
+}
 
 - (void)setEmail:(RBEmail *)email;
 

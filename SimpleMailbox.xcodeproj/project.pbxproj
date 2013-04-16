@@ -57,6 +57,11 @@
 		A1EED573171D2EF700B97387 /* RBCustomSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = A1EED572171D282000B97387 /* RBCustomSegmentedControl.m */; };
 		A1EED576171D35D600B97387 /* mailbox.png in Resources */ = {isa = PBXBuildFile; fileRef = A1EED574171D35D600B97387 /* mailbox.png */; };
 		A1EED577171D35D600B97387 /* mailbox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A1EED575171D35D600B97387 /* mailbox@2x.png */; };
+		A1EED57E171D3B0800B97387 /* ChevinCyrillic-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A1EED579171D3B0800B97387 /* ChevinCyrillic-Bold.ttf */; };
+		A1EED57F171D3B0800B97387 /* ChevinCyrillic-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A1EED57A171D3B0800B97387 /* ChevinCyrillic-BoldItalic.ttf */; };
+		A1EED580171D3B0800B97387 /* ChevinCyrillic-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A1EED57B171D3B0800B97387 /* ChevinCyrillic-Light.ttf */; };
+		A1EED581171D3B0800B97387 /* ChevinCyrillic-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A1EED57C171D3B0800B97387 /* ChevinCyrillic-LightItalic.ttf */; };
+		A1EED586171D602100B97387 /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = A1EED585171D602100B97387 /* NSDate+Helper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -126,6 +131,12 @@
 		A1EED572171D282000B97387 /* RBCustomSegmentedControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RBCustomSegmentedControl.m; sourceTree = "<group>"; };
 		A1EED574171D35D600B97387 /* mailbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mailbox.png; sourceTree = "<group>"; };
 		A1EED575171D35D600B97387 /* mailbox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mailbox@2x.png"; sourceTree = "<group>"; };
+		A1EED579171D3B0800B97387 /* ChevinCyrillic-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ChevinCyrillic-Bold.ttf"; sourceTree = "<group>"; };
+		A1EED57A171D3B0800B97387 /* ChevinCyrillic-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ChevinCyrillic-BoldItalic.ttf"; sourceTree = "<group>"; };
+		A1EED57B171D3B0800B97387 /* ChevinCyrillic-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ChevinCyrillic-Light.ttf"; sourceTree = "<group>"; };
+		A1EED57C171D3B0800B97387 /* ChevinCyrillic-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ChevinCyrillic-LightItalic.ttf"; sourceTree = "<group>"; };
+		A1EED584171D602100B97387 /* NSDate+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Helper.h"; sourceTree = "<group>"; };
+		A1EED585171D602100B97387 /* NSDate+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Helper.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +203,7 @@
 		A1EED4A3171C768800B97387 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A1EED578171D3B0800B97387 /* Fonts */,
 				A1EED4C2171C770100B97387 /* Images */,
 				A1EED4C6171C770100B97387 /* Strings */,
 				A1EED4C9171C770100B97387 /* XIBs */,
@@ -208,6 +220,7 @@
 				A1EED4B3171C768E00B97387 /* DataProviders */,
 				A1EED4B4171C768E00B97387 /* DOM */,
 				A1EED4B5171C768E00B97387 /* Main */,
+				A1EED583171D601000B97387 /* Misc */,
 				A1EED4BA171C768E00B97387 /* Networking */,
 				A1EED4BB171C768E00B97387 /* ViewControllers */,
 				A1EED4BE171C768E00B97387 /* Views */,
@@ -391,6 +404,26 @@
 			name = "App Icons";
 			sourceTree = "<group>";
 		};
+		A1EED578171D3B0800B97387 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				A1EED579171D3B0800B97387 /* ChevinCyrillic-Bold.ttf */,
+				A1EED57A171D3B0800B97387 /* ChevinCyrillic-BoldItalic.ttf */,
+				A1EED57B171D3B0800B97387 /* ChevinCyrillic-Light.ttf */,
+				A1EED57C171D3B0800B97387 /* ChevinCyrillic-LightItalic.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		A1EED583171D601000B97387 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				A1EED584171D602100B97387 /* NSDate+Helper.h */,
+				A1EED585171D602100B97387 /* NSDate+Helper.m */,
+			);
+			path = Misc;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -476,6 +509,10 @@
 				A1EED570171D269E00B97387 /* segment-2@2x.png in Resources */,
 				A1EED576171D35D600B97387 /* mailbox.png in Resources */,
 				A1EED577171D35D600B97387 /* mailbox@2x.png in Resources */,
+				A1EED57E171D3B0800B97387 /* ChevinCyrillic-Bold.ttf in Resources */,
+				A1EED57F171D3B0800B97387 /* ChevinCyrillic-BoldItalic.ttf in Resources */,
+				A1EED580171D3B0800B97387 /* ChevinCyrillic-Light.ttf in Resources */,
+				A1EED581171D3B0800B97387 /* ChevinCyrillic-LightItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,6 +536,7 @@
 				A1EED52C171C857000B97387 /* RBDataProvider.m in Sources */,
 				A1EED52F171CFC5500B97387 /* RBPagination.m in Sources */,
 				A1EED533171D102200B97387 /* RBCell.m in Sources */,
+				A1EED586171D602100B97387 /* NSDate+Helper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

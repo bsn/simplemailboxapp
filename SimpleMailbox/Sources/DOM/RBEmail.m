@@ -8,6 +8,7 @@
 
 #import "RBEmail.h"
 #import "MCSwipeTableViewCell.h"
+#import "NSDate+Helper.h"
 
 @implementation RBEmail
 
@@ -38,7 +39,7 @@
         _body = [dict objectForKey:@"body"];
         _starred = [[dict objectForKey:@"starred"] boolValue];
         _messages = [[dict objectForKey:@"messages"] integerValue];
-        _date = [dict objectForKey:@"received_at"];
+        _date = [NSDate dateWithString:[dict objectForKey:@"received_at"]];
     }
 
     return self;
