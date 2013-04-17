@@ -44,13 +44,13 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
 
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-        [TWStatus dismiss];
+        [TWStatus dismissAfter:1.];
         if ([JSON isKindOfClass:[NSDictionary class]])
             completionBlock((NSDictionary *)JSON);
         else
             errorBlock([NSError errorWithDomain:@"ServerError" code:500 userInfo:nil]);
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-        [TWStatus dismiss];
+        [TWStatus dismissAfter:1.];
         errorBlock(error);
     }];
 
