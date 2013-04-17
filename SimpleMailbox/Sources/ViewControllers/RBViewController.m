@@ -31,6 +31,7 @@
     }
 
     [RBDataProvider sharedProvider].delegate = self;
+    self.tableView.layer.cornerRadius = 8.;
     [self.tableView addInfiniteScrollingWithActionHandler:^{ [[RBDataProvider sharedProvider] loadMore]; }];
     [self.tableView reloadData];
 }
