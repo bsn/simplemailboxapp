@@ -196,7 +196,9 @@ UIEdgeInsets scrollViewOriginalContentInsets;
         CGFloat scrollViewContentHeight = self.scrollView.contentSize.height;
         CGFloat scrollOffsetThreshold = scrollViewContentHeight-self.scrollView.bounds.size.height;
 
-        if(!self.scrollView.isDragging && self.state == SVInfiniteScrollingStateTriggered)
+        contentOffset.y += 300.; // Andrey Toropchin on 17.04 to improve scrolling experience
+
+        if(self.state == SVInfiniteScrollingStateTriggered)
             self.state = SVInfiniteScrollingStateLoading;
         else if(contentOffset.y > scrollOffsetThreshold && self.state == SVInfiniteScrollingStateStopped && self.scrollView.isDragging)
             self.state = SVInfiniteScrollingStateTriggered;
