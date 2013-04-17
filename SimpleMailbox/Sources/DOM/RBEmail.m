@@ -21,6 +21,8 @@
 // Syntetic:
 #define RB_STATE_KEY @"state"
 
+#define RB_TITLE_LENGTH 27
+
 static NSRegularExpression *sAddressRegExp = nil;
 
 @interface RBEmail (Private)
@@ -127,16 +129,50 @@ static NSRegularExpression *sAddressRegExp = nil;
 
 + (NSString *)_stringWithFrom:(NSString *)from to:(NSString *)to
 {
+    NSString* result = nil;
+
     if (sAddressRegExp == nil)
         sAddressRegExp = [[NSRegularExpression alloc] initWithPattern:@" <.*>" options:NSRegularExpressionCaseInsensitive error:nil];
 
-    NSMutableString *mutableFrom = [NSMutableString stringWithString:from];
-    [sAddressRegExp replaceMatchesInString:mutableFrom options:NSMatchingReportProgress range:NSMakeRange(0, [from length]) withTemplate:@""];
+    @autoreleasepool
+    {
+        NSMutableString *mutableFrom = [NSMutableString stringWithString:from];
+        [sAddressRegExp replaceMatchesInString:mutableFrom options:NSMatchingReportProgress range:NSMakeRange(0, [from length]) withTemplate:@""];
 
-    NSMutableString *mutableTo = [NSMutableString stringWithString:to];
-    [sAddressRegExp replaceMatchesInString:mutableTo options:NSMatchingReportProgress range:NSMakeRange(0, [to length]) withTemplate:@""];
+        NSMutableString *mutableTo = [NSMutableString stringWithString:to];
+        [sAddressRegExp replaceMatchesInString:mutableTo options:NSMatchingReportProgress range:NSMakeRange(0, [to length]) withTemplate:@""];
 
-    return [NSString stringWithFormat:@"%@ to %@", mutableFrom, mutableTo];
+        NSArray *recepients = [mutableTo componentsSeparatedByString:@", "];
+        if ([recepients count] > 1)
+            result = [NSString stringWithFormat:@"%@ & %d others", mutableFrom, [recepients count]];
+        else
+            result = [NSString stringWithFormat:@"%@ to %@", mutableFrom, mutableTo];
+
+        if ([result length] > RB_TITLE_LENGTH)
+        {
+            NSMutableArray *fromArray = [NSMutableArray arrayWithArray:[mutableFrom componentsSeparatedByString:@" "]];
+            NSMutableArray *toArray = nil;
+            if ([recepients count] == 1)
+                toArray = [NSMutableArray arrayWithArray:[mutableTo componentsSeparatedByString:@" "]];
+            BOOL shouldStop = NO;
+            while ([result length] > RB_TITLE_LENGTH && !shouldStop)
+            {
+                NSMutableArray *array = ([fromArray count] >= [toArray count]) ? fromArray : toArray;
+                if ([array count] > 1)
+                    [array removeLastObject];
+
+                if ([fromArray count] <= 1 && [toArray count] <= 1)
+                    shouldStop = YES;
+
+                if ([recepients count] > 1)
+                    result = [NSString stringWithFormat:@"%@ & %d others", [fromArray componentsJoinedByString:@" "], [recepients count]];
+                else
+                    result = [NSString stringWithFormat:@"%@ to %@", [fromArray componentsJoinedByString:@" "], [toArray componentsJoinedByString:@" "]];
+            }
+        }
+    }
+
+    return result;
 }
 
 @end
