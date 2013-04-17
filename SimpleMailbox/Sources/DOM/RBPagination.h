@@ -13,12 +13,12 @@
 @private
     NSInteger _perPage;
     NSInteger _currentPage;
-    NSInteger _totalPages;
+    NSInteger _total;
 }
 
 @property (nonatomic, readonly) NSInteger perPage;
 @property (nonatomic, assign) NSInteger currentPage;
-@property (nonatomic, readonly) NSInteger totalPages;
+@property (nonatomic, readonly) NSInteger total;
 
 - (id)initWithDict:(NSDictionary *)dict;
 

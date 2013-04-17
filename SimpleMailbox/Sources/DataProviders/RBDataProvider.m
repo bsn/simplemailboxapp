@@ -75,7 +75,7 @@ static RBDataProvider *sSharedProvider = nil;
 
 - (BOOL)loadMore
 {
-    if (_pagination.currentPage < _pagination.totalPages)
+    if ([_emails count] < _pagination.total)
     {
         [self _getEmailsForPage:(_pagination.currentPage + 1)];
 
@@ -167,15 +167,11 @@ static RBDataProvider *sSharedProvider = nil;
                     [_emails addObjectsFromArray:items];
 
                     _pagination = [[RBPagination alloc] initWithDict:[result objectForKey:@"pagination"]];
-                    // Note: Hack to deal with pagination issue, when current_page < total, but emails array is empty => no need to load more next time
-                    BOOL hasMore = [[result objectForKey:@"emails"] count] > 0;
-                    if (!hasMore)
-                        _pagination.currentPage = _pagination.totalPages;
 
                     [_filteredEmails removeObjectForKey:[NSNumber numberWithInt:kRBEmailStateInbox]];
 
                     if ([self.delegate conformsToProtocol:@protocol(RBDataProviderDelegate)])
-                        [self.delegate emailsDidFetched:hasMore];
+                        [self.delegate emailsDidFetched:([_emails count] < _pagination.total)];
                 });
             }
         });

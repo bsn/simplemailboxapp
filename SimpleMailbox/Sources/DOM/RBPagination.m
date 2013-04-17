@@ -10,13 +10,13 @@
 
 #define RB_PER_PAGE_KEY @"per_page"
 #define RB_CUR_PAGE_KEY @"current_page"
-#define RB_TOTAL_PAGES_KEY @"total"
+#define RB_TOTAL_KEY @"total"
 
 @implementation RBPagination
 
 @synthesize perPage = _perPage;
 @synthesize currentPage = _currentPage;
-@synthesize totalPages = _totalPages;
+@synthesize total = _total;
 
 - (id)initWithDict:(NSDictionary *)dict
 {
@@ -29,7 +29,7 @@
 
         _perPage = [[dict objectForKey:RB_PER_PAGE_KEY] integerValue];
         _currentPage = [[dict objectForKey:RB_CUR_PAGE_KEY] integerValue];
-        _totalPages = [[dict objectForKey:RB_TOTAL_PAGES_KEY] integerValue];
+        _total = [[dict objectForKey:RB_TOTAL_KEY] integerValue];
     }
 
     return self;
@@ -39,7 +39,7 @@
 {
     [encoder encodeObject:[NSNumber numberWithInt:_perPage] forKey:RB_PER_PAGE_KEY];
     [encoder encodeObject:[NSNumber numberWithInt:_currentPage] forKey:RB_CUR_PAGE_KEY];
-    [encoder encodeObject:[NSNumber numberWithInt:_totalPages] forKey:RB_TOTAL_PAGES_KEY];
+    [encoder encodeObject:[NSNumber numberWithInt:_total] forKey:RB_TOTAL_KEY];
 }
 
 - (id)initWithCoder:(NSCoder *)decoder
@@ -50,7 +50,7 @@
     {
         _perPage = [[decoder decodeObjectForKey:RB_PER_PAGE_KEY] integerValue];
         _currentPage = [[decoder decodeObjectForKey:RB_CUR_PAGE_KEY] integerValue];;
-        _totalPages = [[decoder decodeObjectForKey:RB_TOTAL_PAGES_KEY] integerValue];;
+        _total = [[decoder decodeObjectForKey:RB_TOTAL_KEY] integerValue];;
     }
 
     return self;
