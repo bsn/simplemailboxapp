@@ -123,7 +123,7 @@
     CGSize counterSize = [_counterLabel.text sizeWithFont:_counterLabel.font];
     counterSize.width += 7.; // extra padding
     counterSize.height += 2.; // extra padding
-    _counterLabel.frame = CGRectMake(294. - counterSize.width, rintf((CGRectGetHeight(self.contentView.bounds) - counterSize.height) / 2.), counterSize.width, counterSize.height);
+    _counterLabel.frame = CGRectMake(294. - counterSize.width, rintf((CGRectGetHeight(self.contentView.bounds) - counterSize.height) / 2.) - 1., counterSize.width, counterSize.height);
     _rightIconView.frame = CGRectMake(303., rintf((CGRectGetHeight(self.contentView.bounds) - _rightIconView.image.size.height) / 2.), _rightIconView.image.size.width, _rightIconView.image.size.height);
     _topLabel.frame = CGRectMake(textOffsetLeft, marginTop, 208., [@"A" sizeWithFont:_topLabel.font].height);
     CGFloat textWidth = !_counterLabel.hidden ? 235. : (CGRectGetMaxX(_counterLabel.frame) - textOffsetLeft);
