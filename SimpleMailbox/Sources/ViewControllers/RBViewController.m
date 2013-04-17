@@ -22,6 +22,8 @@
 {
     [super viewDidLoad];
 
+    self.containerView.layer.cornerRadius = 8.;
+
     if (_segmentedControl == nil)
     {
         _segmentedControl = [[RBCustomSegmentedControl alloc] initWithSegmentCount:3 segmentsize:CGSizeMake(53., 32.) dividerImage:nil tag:0 delegate:self];
@@ -31,7 +33,6 @@
     }
 
     [RBDataProvider sharedProvider].delegate = self;
-    self.tableView.layer.cornerRadius = 8.;
     [self.tableView addInfiniteScrollingWithActionHandler:^{ [[RBDataProvider sharedProvider] loadMore]; }];
     [self.tableView reloadData];
 }

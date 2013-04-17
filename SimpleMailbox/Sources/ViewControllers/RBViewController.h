@@ -19,6 +19,7 @@
     RBEmailState _selectedState;
 }
 
+@property (nonatomic, strong) IBOutlet UIView *containerView;
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) IBOutlet UIView *topBarView;
 @property (nonatomic, strong) IBOutlet UIButton *refreshButton;
